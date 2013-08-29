@@ -1,18 +1,33 @@
-
+@import url(http://fonts.googleapis.com/css?family=Crete+Round:400,400italic);
 
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
 
+body {
+	background-image: url('../img/skewed_print.png');
+	background-color: #1F1C1C;
+	font-family: 'Crete Round', serif;
+}
 
+h1 {
+	color: #E6101B;
+}
 
+h1 a {
+	color: #E6101B;
+	padding-right: 10px;
+}
 
+h2 {
+	color: #E6101B;
+}
 
+a {
+	color: #E6101B;	
+}
 
-
-
-
-
-
-
+.container {
+	color: #fff;
+}
 

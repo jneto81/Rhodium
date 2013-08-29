@@ -31,7 +31,7 @@ class HomeController extends BaseController
 
 	public function ourPage()
 	{
-		$params = array('param1' => 'Hello, ', 'param2' => 'world!');
+		$params = array('param1' => 'Hello, ', 'param2' => 'Rhodium user!');
 
 		$view = $this->view('index', $params);
 
