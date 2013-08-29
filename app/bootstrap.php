@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * Global namespace
+ *
+ * Bootstrap file for
+ * application. Basic
+ * app loading and
+ * set-up process.
+ *
+ * @author     Ewan Valentine <ewan@pushon.co.uk>
+ * @copyright  PushOn 2013
+ */
+namespace
+{   
+
+    use Silex\Provider\MonologServiceProvider, 
+        Silex\Provider\TwigServiceProvider,
+        Silex\Provider\UrlGeneratorServiceProvider,
+        Silex\Provider\HttpCacheServiceProvider,
+        Silex\Provider\SessionServiceProvider,
+        Silex\Provider\FormServiceProvider,
+        Silex\Provider;
+
+    use Core\Config\DatabaseConfig,
+        Core\Helpers\Contacts,
+        Core\BaseController;
+
+    /** Global functions */
+
+    /**
+     * Debuger no exit
+     * @param  mixed $arg input from debug caller
+     * @return mixed      var_dump();
+     */
+    function d( $arg )
+    {
+        var_dump( $arg );
+    }
+
+    /**
+     * Debuger with exit
+     * @param  mixed $arg input from debug caller with exit
+     * @return mixed      var_dump() exit;
+     */
+    function de( $arg )
+    {
+        var_dump( $arg );
+        exit;
+    }
+
+    /** Bootstrap */
+
+    /** Loads base level Silex components */
+    $app = new Silex\Application();
+
+    /** Base path */
+    $app['base.path'] = __DIR__;
+
+    /** Cache path */
+    $app['cache.path'] = __DIR__ . '/cache';
+
+    /** Config path */
+    $app['config.path'] = __DIR__ . '/config';
+
+    /** Register session provider */
+    $app->register(new SessionServiceProvider());
+
+    /** Register Url generator service provider */
+    $app->register(new UrlGeneratorServiceProvider());
+
+    /** Config directory (json config files) */
+    $dir = __DIR__.'/config';
+
+    /** Sets Database configuration */
+    $dbcfg = new DatabaseConfig();
+    $dbcfg->setFilePath( $dir );
+
+    /** Register Http Cache service */
+    $app->register(new HttpCacheServiceProvider());
+    $app['http_cache.cache_dir'] = $app['cache.path'] . '/http';
+
+    /** Register mongolog logging service provider */
+    $app->register(new MonologServiceProvider(), array(
+        'monolog.logfile'       => __DIR__.'/log/app.log',
+        'monolog.name'          => 'kp_app',
+        'monolog.level'         => 300 // = Logger::WARNING
+    ));
+
+    /** Register twig service provider */
+    $app->register(new TwigServiceProvider(), array(
+        'twig.path'             => array(__DIR__ . '/../src/Views'),
+        'twig.options'          => array(
+            'cache' => false, // __DIR__ . '/cache', 
+            'strict_variables' => false
+        ),
+    ));
+
+    /** Register form service provider */
+    $app->register(new FormServiceProvider());
+
+    $base = new BaseController( $app );
+
+    /** Boots app */
+    $app->boot();
+
+    /** Returns Silex\Application as var $app */
+    return $app;
+}
+
+
+

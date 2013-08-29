@@ -1,0 +1,124 @@
+<?php 
+
+namespace Core;
+
+use Silex\Application;
+use Core\Helpers\Loader;
+
+/**
+ * BaseController
+ *
+ * Base Controller, controllers don't have to extend
+ * the base controller, it's optional. Though,
+ * extending the base controller gives users controllers
+ * access to core functions, such as the Silex\Application,
+ * the resource loaders, the model loader etc.
+ *
+ * @author 		Ewan Valentine <ewan.valentine89@gmail.com>
+ * @copyright 	Ewan Valentine 2013
+ */
+class BaseController
+{
+
+	public $model;
+	public $view;
+	public $helper;
+	public $thirdParty;
+	protected $app;
+
+	/**
+	 * __construct()
+	 *
+	 * Sets Application and Loader
+	 */
+	public function __construct()
+	{
+		
+	}
+
+	/**
+	 * model
+	 *
+	 * This is the core model loader,
+	 * to be used in user controllers.
+	 * 
+	 * @param  string $model accepts model name
+	 * @return object        returns instance of a model
+	 */
+	public function model( $model )
+	{
+		$modelString = "\Chug\Models\\" . $model;
+
+		$model = new $modelString;
+
+		return $model;
+	}
+
+
+	public function view( $view, $params )
+	{
+
+		if ( isset( $params ) ) {
+			$view = $this->app['twig']->render( $view . '.html.twig', $params );
+		} else {
+			$view = $this->app['twig']->render( $view . '.html.twig');
+		}
+
+		return $view;
+	}
+
+	/**
+	 * helper
+	 *
+	 * @todo  Will be used to load libraries
+	 * 
+	 * @param  string $helper helper name
+	 * @return object         helper object
+	 */
+	public function helper($helper)
+	{
+
+	}
+
+	/**
+	 * load
+	 *
+	 * Loader class for loading files,
+	 * media files, config files etc.
+	 * 
+	 * @param  string $type file sort
+	 * @param  string $name file name
+	 * @param  string $ext  mime type
+	 * @return string       filepath
+	 */
+	public function load($type, $name, $ext)
+	{
+		switch ( $type ) {
+			case $type == 'image':
+				$result = $this->loader->loadImage( $name, $ext );
+				break;
+
+			case $type == 'audio':
+				$result = $this->loader->loadAudio( $name, $ext );
+				break;
+
+			case $type == 'video':
+				$result = $this->loader->loadVideo( $name, $ext );
+				break;
+
+			case $type == 'xml':
+				$result = $this->loader->loadXML( $name );
+				break;
+
+			case $type == 'json':
+				$result = $this->loader->loadJSON( $name );
+				break;
+
+			default:
+				$result = 'Incorrect params given';
+				break;
+		}
+
+		return $result;
+	}
+}

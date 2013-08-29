@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap-responsive.css" />
+            <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css" />
+            <title>{% block title %}{% endblock %} - PushOn</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div id="container">{% block content %}{% endblock %}</div>
+        <div id="footer">
+            {% block footer %}
+                &copy; Copyright 2011 by <a href="http://pushon.co.uk/">PushOn</a>.
+            {% endblock %}
+        </div>
+    </body>
+</html>

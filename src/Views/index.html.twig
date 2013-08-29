@@ -1,0 +1,45 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+
+<h1>Internal Framework - Home</h1>
+
+<h2>Sifter times overview</h2>
+
+	{% for p in pname %}
+
+		{{ p.name }}
+
+	{% endfor %}
+
+<table class="table table-responsive">
+
+	<tr>
+		<th>#id</th>
+		<th>Developer</th>
+		<th>Description</th>
+		<th>Hours</th>
+		<th>Project</th>
+	</tr>
+
+	{% for a in all %}
+
+	<tr>
+		<td>{{ a.id }}</td>
+		<td>
+			{{ attribute(a, 'person-name') }}
+			{{ a }}
+		</td>
+		<td>{{ a.description }}</td>
+		<td>{{ a.hours }}</td>
+		<td>
+			{{ attribute(a, 'project-id') }}
+			{{ a }}
+		</td>
+	</tr>		
+
+	{% endfor %}
+
+</table>
+
+{% endblock %}

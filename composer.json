@@ -1,0 +1,34 @@
+{	
+	"name"        : "PushOn/IntDev",
+    "type"        : "library",
+    "description" : "Internal framework, to assist with our third party API's, data and other stuff.",
+    "keywords"    : ["framework"],
+    "homepage"    : "https://github.com/pushonltd/pushon.git",
+    "license"     : "MIT",
+    "authors"     : [
+        {
+            "name"  : "Ewan Valentine",
+            "email" : "ewan@pushon.co.uk",
+            "homepage": "www.pushon.co.uk",
+            "role": "Cheiftan"
+        }
+    ],
+	"require": {
+		"silex/silex": "1.0.*",
+        "twig/twig": ">=1.8,<2.0-dev",
+        "symfony/twig-bridge": "2.1.*",
+        "monolog/monolog": ">=1.0.0",
+        "symfony/security": "~2.3",
+        "symfony/form": "~2.3",
+        "doctrine/dbal": "2.3.*",
+		"symfony/console": "2.3.*",
+        "knplabs/console-service-provider": "dev-master"
+	},
+	"autoload": {
+		"psr-0": { "Core": "Core/" },
+		"classmap": [
+			"src/",
+			"app/"
+        ]
+	}	
+}

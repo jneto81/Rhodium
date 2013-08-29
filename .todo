@@ -1,0 +1,4 @@
+@todo Intergrate command line interface.
+@todo Intergrate MVC.
+@todo JSON config files.
+@todo Email data-sets, possiby a controller once MVCed?
