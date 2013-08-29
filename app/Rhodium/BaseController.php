@@ -1,9 +1,8 @@
 <?php 
 
-namespace Core;
+namespace Rhodium;
 
-use Silex\Application;
-use Core\Helpers\Loader;
+use Rhodium\Helpers\Loader;
 
 /**
  * BaseController

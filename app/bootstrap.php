@@ -22,9 +22,9 @@ namespace
         Silex\Provider\FormServiceProvider,
         Silex\Provider;
 
-    use Core\Config\DatabaseConfig,
-        Core\Helpers\Contacts,
-        Core\BaseController;
+    use Rhodium\Config\DatabaseConfig,
+        Rhodium\Helpers\Contacts,
+        Rhodium\BaseController;
 
     /** Global functions */
 

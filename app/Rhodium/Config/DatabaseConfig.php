@@ -1,9 +1,9 @@
 <?php 
 
-namespace Core\Config;
+namespace Rhodium\Config;
 
 /** Rummage library (xml and json parsing) **/
-use Core\Helpers\Rummage;
+use Rhodium\Helpers\Rummage;
 
 /**
  * DatabaseConfig 

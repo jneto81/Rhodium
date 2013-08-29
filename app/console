@@ -5,14 +5,7 @@ set_time_limit(0);
 
 $app = require_once __DIR__.'/silex.php';
 
-use Core\Commands\SifterIssuesResolvedCommand;
-use Core\Commands\SifterHoursDeveloperCommand;
-use Core\Commands\SifterHoursProjectCommand;
-use Core\Commands\SifterNewTicketsCommand;
-
 $application = $app['console'];
-$application->add(new SifterIssuesResolvedCommand());
-$application->add(new SifterHoursDeveloperCommand());
-$application->add(new SifterHoursProjectCommand());
-$application->add(new SifterNewTicketsCommand());
+// $application->add(new MyCommand());
+
 $application->run();

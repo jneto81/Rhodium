@@ -1,9 +1,9 @@
 <?php 
 
-namespace Core\Database;
+namespace Rhodium\Database;
 
 use \PDO;
-use Core\Config\DatabaseConfig;
+use Rhodium\Config\DatabaseConfig;
 
 /**
  * Database Core

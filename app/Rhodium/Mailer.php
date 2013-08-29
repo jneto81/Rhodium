@@ -1,8 +1,8 @@
 <?php 
 
-namespace Core;
+namespace Rhodium;
 
-use Core\Helpers\Rummage;
+use Rhodium\Helpers\Rummage;
 
 /**
  * Mailer

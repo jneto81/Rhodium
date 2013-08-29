@@ -1,8 +1,8 @@
 <?php 
 
-namespace Core\Config;
+namespace Rhodium\Config;
 
-use Core\Config\iPath;
+use Rhodium\Config\iPath;
 
 class Paths implements iPath
 {
