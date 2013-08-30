@@ -4,6 +4,8 @@ namespace Rhodium;
 
 use Rhodium\Helpers\Loader;
 
+use Silex\Application;
+
 /**
  * BaseController
  *
@@ -23,7 +25,8 @@ class BaseController
 	public $view;
 	public $helper;
 	public $thirdParty;
-	protected $app;
+
+	protected static $app;
 
 	/**
 	 * __construct()
@@ -33,6 +36,11 @@ class BaseController
 	public function __construct()
 	{
 		
+	}
+
+	public static function setApp( $app )
+	{
+		self::$app = $app;
 	}
 
 	/**
@@ -58,9 +66,9 @@ class BaseController
 	{
 
 		if ( isset( $params ) ) {
-			$view = $this->app['twig']->render( $view . '.html.twig', $params );
+			$view = self::$app['twig']->render( $view . '.html.twig', $params );
 		} else {
-			$view = $this->app['twig']->render( $view . '.html.twig');
+			$view = self::$app['twig']->render( $view . '.html.twig');
 		}
 
 		return $view;

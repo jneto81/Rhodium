@@ -2,10 +2,18 @@
 
 namespace YourAppName\Models;
 
-class TestModel
+use Rhodium\BaseModel;
+
+class TestModel extends BaseModel
 {
-	public function getTestData()
+
+	public function __construct()
 	{
-		
+		parent::__construct();
+	}
+
+	public function getData()
+	{
+		return self::$app['db']->fetchAssoc('SELECT * FROM test');
 	}
 }

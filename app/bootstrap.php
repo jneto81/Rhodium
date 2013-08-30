@@ -112,7 +112,11 @@ namespace
     /** Register form service provider */
     $app->register(new FormServiceProvider());
 
-    $base = new BaseController( $app );
+    $controller = new BaseController();
+    $controller->setApp( $app );
+
+    $model = new BaseModel();
+    $model->setApp( $app );
 
     /** Boots app */
     $app->boot();

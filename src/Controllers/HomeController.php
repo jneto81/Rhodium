@@ -23,10 +23,18 @@ class HomeController extends BaseController
 	 * constructor in order to use all
 	 * of the functions in the BaseController.
 	 */
-	public function __construct( $app )
+	public function __construct()
 	{
 		parent::__construct();
-		$this->app = $app;
+	}
+
+	public function getData()
+	{
+		$model = $this->model('Test');
+
+		$data = $model->getData();
+
+		return $data;
 	}
 
 	public function ourPage()
