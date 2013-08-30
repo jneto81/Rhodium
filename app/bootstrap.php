@@ -25,9 +25,8 @@ namespace
 
     use Rhodium\Config\DatabaseConfig,
         Rhodium\Helpers\Contacts,
-        Rhodium\BaseController;
-
-
+        Rhodium\BaseController,
+        Rhodium\BaseModel;
 
     /** Global functions */
 
@@ -85,9 +84,11 @@ namespace
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig( $dir );
 
-    $app->register(new DoctrineServiceProvider(), array(
-        'db.options' => $dbcfg::databaseParams()
-    ));
+    // d( $dbcfg::databaseParams() );
+
+    // $app->register(new DoctrineServiceProvider(), array(
+    //     'db.options' => $dbcfg::databaseParams()
+    // ));
 
     /** Register Http Cache service */
     $app->register(new HttpCacheServiceProvider());
@@ -111,6 +112,8 @@ namespace
 
     /** Register form service provider */
     $app->register(new FormServiceProvider());
+
+    $app['app.name'] = 'YourAppName';
 
     $controller = new BaseController();
     $controller->setApp( $app );

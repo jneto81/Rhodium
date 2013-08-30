@@ -54,7 +54,7 @@ class BaseController
 	 */
 	public function model( $model )
 	{
-		$modelString = "\Chug\Models\\" . $model;
+		$modelString = "" . self::$app['app.name'] . "\Models\\" . $model . "Model";
 
 		$model = new $modelString;
 

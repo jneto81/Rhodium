@@ -8,8 +8,6 @@ namespace YourAppName;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-use Rhodium\Mailer;
-
 /** Homepage */
 $app->match('/', function() use ( $app ) {
 
