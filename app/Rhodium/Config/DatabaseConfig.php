@@ -14,11 +14,12 @@ use Rhodium\Helpers\Rummage;
  */
 class DatabaseConfig
 {
-	private $dbtype;
-	private $dbname;
-	private $dbuser;
-	private $dbpass;
-	private $dbhost;
+	private static $dbtype;
+	private static $dbname;
+	private static $dbuser;
+	private static $dbpass;
+	private static $dbhost;
+	private static $json;
 
 	// Configured on app start-up, must be static
 	public static $path;
@@ -29,10 +30,12 @@ class DatabaseConfig
 	 * Initialises the JSON parser on
 	 * instantiation
 	 */
-	public function __construct()
+	public function __construct( $path )
 	{
+		self::$path = $path;
+		
 		// Initialises the JSON parser. This feels wrong...
-		$this->initJSON();
+		$this->initJSON( self::$path );
 	}
 
 	/**
@@ -45,7 +48,7 @@ class DatabaseConfig
 	 * 			
 	 * @param string $path filepath from bootstrap
 	 */
-	public function setFilePath( $path )
+	public static function setFilePath( $path )
 	{
 		// This has to be static as it's set via the bootstrap
 		self::$path = $path;
@@ -57,7 +60,7 @@ class DatabaseConfig
 	 * Simple getter for config filepath
 	 * @return string filepath
 	 */
-	public function getFilePath()
+	public static function getFilePath()
 	{
 		return self::$path;
 	}
@@ -71,10 +74,10 @@ class DatabaseConfig
 	 * In this case it is used to return JSON
 	 * config files.
 	 */
-	public function initJSON()
+	public static function initJSON()
 	{
-		$this->json = new Rummage;
-		$this->json->setFileLocation(self::$path, 'db', 'json');
+		self::$json = new Rummage;
+		self::$json->setFileLocation(self::getFilePath(), 'db', 'json');
 	}
 
 	/**
@@ -85,11 +88,11 @@ class DatabaseConfig
 	 * 			
 	 * @return string Database type.
 	 */
-	public function getDbType()
+	public static function getDbType()
 	{
-		$this->dbtype = $this->json->parseJSON()->dbtype;
+		self::$dbtype = self::$json->parseJSON()->dbtype;
 
-		return $this->dbtype;
+		return self::$dbtype;
 	}
 
 	/**
@@ -100,11 +103,11 @@ class DatabaseConfig
 	 * 
 	 * @return string Database name.
 	 */
-	public function getDbName()
+	public static function getDbName()
 	{
-		$this->dbname = $this->json->parseJSON()->dbname;
+		self::$dbname = self::$json->parseJSON()->dbname;
 
-		return $this->dbname;
+		return self::$dbname;
 	}
 
 	/**
@@ -115,11 +118,11 @@ class DatabaseConfig
 	 * 
 	 * @return string Database user.
 	 */
-	public function getDbUser()
+	public static function getDbUser()
 	{
-		$this->dbuser = $this->json->parseJSON()->dbuser;
+		self::$dbuser = self::$json->parseJSON()->dbuser;
 
-		return $this->dbuser;
+		return self::$dbuser;
 	}
 
 	/**
@@ -130,11 +133,11 @@ class DatabaseConfig
 	 * 
 	 * @return string Database password.
 	 */
-	public function getDbPass()
+	public static function getDbPass()
 	{
-		$this->dbpass = $this->json->parseJSON()->dbpass;
+		self::$dbpass = self::$json->parseJSON()->dbpass;
 
-		return $this->dbpass;
+		return self::$dbpass;
 	}
 
 	/**
@@ -145,10 +148,40 @@ class DatabaseConfig
 	 * 
 	 * @return string Database host.
 	 */
-	public function getDbHost()
+	public static function getDbHost()
 	{
-		$this->dbhost = $this->json->parseJSON()->dbhost;
+		self::$dbhost = self::$json->parseJSON()->dbhost;
 
-		return $this->dbhost;
+		return self::$dbhost;
+	}
+
+	/**
+	 * databaseParams
+	 *
+	 * Returns the params as a PHP 
+	 * array, for the benefit of
+	 * third party ORM libraries.
+	 * In our case, Doctrine needs
+	 * them in the Bootstrap.
+	 *
+	 * This way, the json config,
+	 * applies globally. 
+	 *
+	 * Yeah, this is a feature...
+	 * 
+	 * @return array Database params.
+	 */
+	public static function databaseParams()
+	{
+
+		// Doctrine friendly naming.
+		$params = array(
+			'driver'   => self::getDbType(),
+	        'user'     => self::getDbUser(),
+	        'password' => self::getDbPass(),
+	        'dbname'   => self::getDbName(),
+		);
+
+		return $params;
 	}
 }

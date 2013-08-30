@@ -20,13 +20,23 @@ namespace
         Silex\Provider\HttpCacheServiceProvider,
         Silex\Provider\SessionServiceProvider,
         Silex\Provider\FormServiceProvider,
+        Silex\Provider\DoctrineServiceProvider,
         Silex\Provider;
 
     use Rhodium\Config\DatabaseConfig,
         Rhodium\Helpers\Contacts,
         Rhodium\BaseController;
 
+
+
     /** Global functions */
+
+    /** 
+    * Cheers to the guys at Message, Brighton 
+    * for showing me this cheeky little number. 
+    * Though 'd' and 'de' is nicer to shout out 
+    * loud than 'take a dump'.
+    */
 
     /**
      * Debuger no exit
@@ -73,8 +83,11 @@ namespace
     $dir = __DIR__.'/config';
 
     /** Sets Database configuration */
-    $dbcfg = new DatabaseConfig();
-    $dbcfg->setFilePath( $dir );
+    $dbcfg = new DatabaseConfig( $dir );
+
+    $app->register(new DoctrineServiceProvider(), array(
+        'db.options' => $dbcfg::databaseParams()
+    ));
 
     /** Register Http Cache service */
     $app->register(new HttpCacheServiceProvider());

@@ -23,7 +23,7 @@
         "doctrine/dbal": "2.3.*",
 		"symfony/console": "2.3.*",
         "knplabs/console-service-provider": "dev-master"
-	},
+    },
 	"autoload": {
 		"psr-0": { "Core": "Core/" },
 		"classmap": [
