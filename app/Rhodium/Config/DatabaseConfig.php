@@ -30,12 +30,10 @@ class DatabaseConfig
 	 * Initialises the JSON parser on
 	 * instantiation
 	 */
-	public function __construct( $path )
+	public function __construct()
 	{
-		self::$path = $path;
-		
 		// Initialises the JSON parser. This feels wrong...
-		$this->initJSON( self::$path );
+		$this->initJSON();
 	}
 
 	/**
@@ -48,10 +46,10 @@ class DatabaseConfig
 	 * 			
 	 * @param string $path filepath from bootstrap
 	 */
-	public static function setFilePath( $path )
+	public static function setFilePath( $app )
 	{
 		// This has to be static as it's set via the bootstrap
-		self::$path = $path;
+		self::$path = $app['config.path'];
 	}
 
 	/**

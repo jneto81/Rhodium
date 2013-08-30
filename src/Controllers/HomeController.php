@@ -28,22 +28,11 @@ class HomeController extends BaseController
 		parent::__construct();
 	}
 
-	public function getData()
-	{
-		$model = $this->model('Test');
-
-		$data = $model->getData();
-
-		return $data;
-	}
-
 	public function ourPage()
 	{
 
-		d( $this->getData() );
-
-		$params = array('param1' => 'Hello, ', 'param2' => 'Rhodium user!');
-
+		$params = array('param1' => 'Ayup, ', 'param2' => ' world!');
+		
 		$view = $this->view('index', $params);
 
 		return $view;

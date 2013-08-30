@@ -2,6 +2,8 @@
 
 namespace Rhodium;
 
+use Rhodium\Database\DBCore;
+
 class BaseModel
 {
 
@@ -9,7 +11,7 @@ class BaseModel
 
 	public function __construct()
 	{
-		
+		$this->db = new DBCore();
 	}
 
 	public static function setApp( $app )

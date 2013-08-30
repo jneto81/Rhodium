@@ -78,11 +78,9 @@ namespace
     /** Register Url generator service provider */
     $app->register(new UrlGeneratorServiceProvider());
 
-    /** Config directory (json config files) */
-    $dir = __DIR__.'/config';
-
     /** Sets Database configuration */
-    $dbcfg = new DatabaseConfig( $dir );
+    $dbcfg = new DatabaseConfig();
+    $dbcfg->setFilePath( $app );
 
     // d( $dbcfg::databaseParams() );
 
