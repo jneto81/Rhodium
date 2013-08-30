@@ -1,2 +1,4 @@
 vendor/
 app/config/
+app/logs/
+app/cache/
