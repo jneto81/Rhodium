@@ -22,3 +22,10 @@ $app->match('/', function() use ( $app ) {
 
 	return new Response ( $content );
 });
+
+$app->match('/shop', function() use ( $app ) {
+	$controller = new \Bullion\Controllers\BasketController();
+	$content = $controller->storeBasket();
+
+	return new Response( $content );
+});

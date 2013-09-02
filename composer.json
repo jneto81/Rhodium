@@ -1,24 +1,26 @@
 {	
-	"name"        : "PushOn/IntDev",
+	"name"        : "Rhodium/framework",
     "type"        : "library",
-    "description" : "Internal framework, to assist with our third party API's, data and other stuff.",
+    "description" : "MVC framework by Ewan Valentine",
     "keywords"    : ["framework"],
-    "homepage"    : "https://github.com/pushonltd/pushon.git",
+    "homepage"    : "https://github.com/EwanValentine/Rhodium.git",
     "license"     : "MIT",
     "authors"     : [
         {
             "name"  : "Ewan Valentine",
-            "email" : "ewan@pushon.co.uk",
-            "homepage": "www.pushon.co.uk",
+            "email" : "ewan.valentine89@gmail.com",
+            "homepage": "www.ewanvalentine.co.uk",
             "role": "Cheiftan"
         }
     ],
     "autoload": {
         "psr-0": {
-            "Rhodium\\": "app/"
+            "Rhodium\\": "app/",
+            "Bullion\\": "app/Bullion"
         },
         "classmap": [
-            "src/"
+            "src/",
+            "app/Bullion/"
         ]
     },
 	"require": {
@@ -28,9 +30,7 @@
         "monolog/monolog": ">=1.0.0",
         "symfony/security": "2.3.*",
         "symfony/form": "2.3.*",
-        "doctrine/dbal": "2.3.*",
 		"symfony/console": "2.3.*",
         "knplabs/console-service-provider": "dev-master",
-        "dflydev/doctrine-orm-service-provider": "dev-master"
     }
 }

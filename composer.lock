@@ -3,97 +3,26 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6f5dd57dc288923fb5cfc7e8872f9201",
+    "hash": "e90d558d739b12ef7a3726c5a7b8a5cf",
     "packages": [
         {
-            "name": "dflydev/doctrine-orm-service-provider",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider.git",
-                "reference": "24be501eee4986b7a69dafa361172478cd3be8d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/24be501eee4986b7a69dafa361172478cd3be8d8",
-                "reference": "24be501eee4986b7a69dafa361172478cd3be8d8",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "~2.3",
-                "php": ">=5.3.3",
-                "pimple/pimple": "1.*@dev"
-            },
-            "require-dev": {
-                "cilex/cilex": "1.*@dev",
-                "cilex/console-service-provider": "@dev",
-                "silex/silex": "1.*@dev"
-            },
-            "suggest": {
-                "dflydev/psr0-resource-locator-service-provider": "1.0.*@dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Dflydev\\Cilex\\Provider\\DoctrineOrm": "src",
-                    "Dflydev\\Pimple\\Provider\\DoctrineOrm": "src",
-                    "Dflydev\\Silex\\Provider\\DoctrineOrm": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dragonfly Development Inc.",
-                    "email": "info@dflydev.com",
-                    "homepage": "http://dflydev.com"
-                },
-                {
-                    "name": "Beau Simensen",
-                    "email": "beau@dflydev.com",
-                    "homepage": "http://beausimensen.com"
-                }
-            ],
-            "description": "Doctrine ORM Service Provider",
-            "keywords": [
-                "cilex",
-                "doctrine",
-                "orm",
-                "pimple",
-                "silex"
-            ],
-            "time": "2013-08-23 18:47:48"
-        },
-        {
             "name": "doctrine/common",
-            "version": "2.3.0",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "d1c7d4334e38cad603a5c863d4c7b91bb04ec6b2"
+                "reference": "b886898821288d305862ee9c567cc5b5cbb4c0dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/d1c7d4334e38cad603a5c863d4c7b91bb04ec6b2",
-                "reference": "d1c7d4334e38cad603a5c863d4c7b91bb04ec6b2",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/b886898821288d305862ee9c567cc5b5cbb4c0dc",
+                "reference": "b886898821288d305862ee9c567cc5b5cbb4c0dc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\Common": "lib/"
@@ -101,7 +30,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "LGPL"
             ],
             "authors": [
                 {
@@ -138,32 +67,27 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2012-09-20 05:55:18"
+            "time": "2011-11-26 08:10:50"
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.3.4",
+            "version": "2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2a37b007dda8e21bdbb8fa445be8fa0064199e13"
+                "reference": "64650385987dee6be046b8fa2485ff4d7663f814"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2a37b007dda8e21bdbb8fa445be8fa0064199e13",
-                "reference": "2a37b007dda8e21bdbb8fa445be8fa0064199e13",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/64650385987dee6be046b8fa2485ff4d7663f814",
+                "reference": "64650385987dee6be046b8fa2485ff4d7663f814",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.3.0,<2.5-dev",
+                "doctrine/common": "2.*",
                 "php": ">=5.3.2"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\DBAL": "lib/"
@@ -171,7 +95,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "LGPL"
             ],
             "authors": [
                 {
@@ -201,41 +125,29 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-11 07:45:37"
+            "time": "2012-05-27 19:17:18"
         },
         {
             "name": "doctrine/orm",
-            "version": "2.3.4",
+            "version": "2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "a41b02c080114c0de3da4ee9fba61f7d18fae7d0"
+                "reference": "03d2b0f30c35d313339478d24337dd1a28a2f2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/a41b02c080114c0de3da4ee9fba61f7d18fae7d0",
-                "reference": "a41b02c080114c0de3da4ee9fba61f7d18fae7d0",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/03d2b0f30c35d313339478d24337dd1a28a2f2f2",
+                "reference": "03d2b0f30c35d313339478d24337dd1a28a2f2f2",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.3.*",
+                "doctrine/common": "2.1.*",
+                "doctrine/dbal": "2.1.*",
                 "ext-pdo": "*",
-                "php": ">=5.3.2",
-                "symfony/console": "2.*"
+                "php": ">=5.3.2"
             },
-            "suggest": {
-                "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
-            },
-            "bin": [
-                "bin/doctrine",
-                "bin/doctrine.php"
-            ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\ORM": "lib/"
@@ -243,7 +155,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "LGPL"
             ],
             "authors": [
                 {
@@ -271,7 +183,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-05-11 07:51:12"
+            "time": "2012-05-27 22:01:53"
         },
         {
             "name": "knplabs/console-service-provider",
@@ -376,6 +288,59 @@
                 "psr-3"
             ],
             "time": "2013-07-28 22:38:30"
+        },
+        {
+            "name": "nutwerk/doctrine-orm-provider",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mjakubowski/nutwerk-orm-extension.git",
+                "reference": "d5b6328ac39fb4d133f0838a30dc30624015969d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mjakubowski/nutwerk-orm-extension/zipball/d5b6328ac39fb4d133f0838a30dc30624015969d",
+                "reference": "d5b6328ac39fb4d133f0838a30dc30624015969d",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "2.1.*",
+                "doctrine/dbal": "2.1.*",
+                "doctrine/orm": "2.1.*",
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "symfony/console": "Necessary if you would like to use the Doctrine CLI tools"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Nutwerk\\Provider": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Marc Jakubowski",
+                    "homepage": "http://nutwerk.de/"
+                }
+            ],
+            "description": "Doctrine ORM provider for Silex",
+            "homepage": "https://github.com/mjakubowski/nutwerk-orm-extension",
+            "keywords": [
+                "database",
+                "doctrine",
+                "extension",
+                "orm",
+                "provider",
+                "silex"
+            ],
+            "time": "2012-05-14 09:13:49"
         },
         {
             "name": "pimple/pimple",
@@ -1364,7 +1329,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "knplabs/console-service-provider": 20,
-        "dflydev/doctrine-orm-service-provider": 20
+        "nutwerk/doctrine-orm-provider": 20
     },
     "platform": [
 

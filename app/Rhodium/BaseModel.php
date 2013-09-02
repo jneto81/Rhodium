@@ -19,12 +19,8 @@ class BaseModel
 		self::$app = $app;
 	}
 
-	protected function persist( $object )
+	public function persist( $object )
 	{
-
-		/** @todo need some kind of generic object persistence */
-		foreach ( $object as $value ) {
-			d( $value );
-		}
+		$db = self::$app['db']->insert('blog', $object);
 	}
 }

@@ -84,10 +84,17 @@ namespace
 
     // d( $dbcfg::databaseParams() );
 
-    // $app->register(new DoctrineServiceProvider(), array(
-    //     'db.options' => $dbcfg::databaseParams()
-    // ));
-
+    $app->register(new DoctrineServiceProvider(), array(
+        'db.options' => array(
+            'driver' => 'pdo_mysql',
+            'host'   => 'localhost',
+            'dbname' => 'Rhodium',
+            'user'   => 'root',
+            'password' => 'drudkh',
+            'charset' => 'utf8',
+        )
+    ));
+    
     /** Register Http Cache service */
     $app->register(new HttpCacheServiceProvider());
     $app['http_cache.cache_dir'] = $app['cache.path'] . '/http';
