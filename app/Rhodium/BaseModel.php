@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Rhodium;
 
@@ -17,5 +17,14 @@ class BaseModel
 	public static function setApp( $app )
 	{
 		self::$app = $app;
+	}
+
+	protected function persist( $object )
+	{
+
+		/** @todo need some kind of generic object persistence */
+		foreach ( $object as $value ) {
+			d( $value );
+		}
 	}
 }
