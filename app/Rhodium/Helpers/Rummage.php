@@ -56,6 +56,7 @@ class Rummage
 	public function parseJSON()
 	{
 		$this->data = file_get_contents( $this->getFileLocation() );
+		
 		return json_decode( $this->data );
 	}
 

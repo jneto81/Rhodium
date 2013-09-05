@@ -113,6 +113,7 @@ namespace
             'cache' => false, // __DIR__ . '/cache', 
             'strict_variables' => false
         ),
+        'twig.composites'            => array(__DIR__ . '/../app/Composites/'),
     ));
 
     /** Register form service provider */

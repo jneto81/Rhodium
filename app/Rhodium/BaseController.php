@@ -62,8 +62,12 @@ class BaseController
 	}
 
 
-	public function view( $view, $params )
+	public function view( $view, $composite = null, $params = null )
 	{
+
+		if ( isset( $composite ) ) {
+			$view = self::$app['twig.composite']->render( $composite . '/' . $view . '.html.twig');
+		}
 
 		if ( isset( $params ) ) {
 			$view = self::$app['twig']->render( $view . '.html.twig', $params );

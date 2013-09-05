@@ -19,8 +19,12 @@ class BaseModel
 		self::$app = $app;
 	}
 
-	public function persist( $object )
+	public function persist( $table, $stuff )
 	{
-		$db = self::$app['db']->insert('blog', $object);
+		if ( is_array( $stuff ) ) {
+			$db = self::$app['db']->insert( $table, $stuff);
+		} else {
+			$db = self::$app['db']->insert( $table, $stuff)
+		}
 	}
 }

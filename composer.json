@@ -15,8 +15,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Rhodium\\": "app/",
-            "Bullion\\": "app/Bullion"
+            "Rhodium\\": "app/"
         },
         "classmap": [
             "src/",
@@ -32,5 +31,6 @@
         "symfony/form": "2.3.*",
 		"symfony/console": "2.3.*",
         "knplabs/console-service-provider": "dev-master",
+        "doctrine/dbal": "2.3.*"
     }
 }

@@ -11,6 +11,13 @@ class BasketModel extends BaseModel implements BasketInterface
 	protected $products;
 	protected $currency;
 
+	/**
+	 * setTotal
+	 *
+	 *	Sets the total order value.
+	 * 
+	 * @param int $total Total order value.
+	 */
 	public function setTotal( $total )
 	{
 		$this->total = $total;
