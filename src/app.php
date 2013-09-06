@@ -53,6 +53,14 @@ $app->match('/admin', function() use ( $app ) {
 	return new Response ( $content );
 });
 
+$app->match('/admin/product/get_test/{id}', function( $id ) use ( $app ) {
+
+	$controller = new Bullion\Controllers\ProductController();
+	$content = $controller->getProduct( $id );
+
+	return new Response ( $content );
+});
+
 /** Admin/Products */
 $app->post('/admin/products/add', function( Request $request ) use ( $app ) {
 

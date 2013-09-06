@@ -26,5 +26,30 @@ class BaseModel
 		} else {
 			$db = self::$app['db']->insert( $table, $stuff);
 		}
+
+		if ( $db == true ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function fetch( $query, $param )
+	{
+		$raw = explode( ':', $query );
+		$table = $raw[0];
+		$column = $raw[1];
+
+		$sql = "SELECT * FROM $table WHERE $column = ? ";
+
+		if ( isset( $column ) ) {
+			$db = self::$app['db']->fetchAssoc( $sql, array( $param ) );
+		}
+
+		if ( $db == true ) {
+			return $db;
+		}
+
+		return false;
 	}
 }

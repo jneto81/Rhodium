@@ -1,26 +1,24 @@
 <?php 
 
+namespace Bullion\Controllers;
+
 use Rhodium\BaseController;
-use Bullion\ProductModel;
+use Bullion\Models\ProductModel;
 
 class ProductController extends BaseController
 {
 	public function __construct()
 	{ 
+		parent::__construct();
 		$this->model = new ProductModel;
 	}
 
-	public function addProduct( ProductModel $product )
+	public function addProduct( array $product )
 	{
-
-		/** Needs to load view, but default twig rendering
-		 * looks for stuff in src/Views, which ain't ideal
-		 * for third party shit like this... 
-		 **/
-		$product = $this->model->persist( $product );
+		$product = $this->model->persist( 'products', $product );
 
 		if ( $product == true ) {
-			return $product;
+			return 'Product added successfully!';
 		}
 
 		return false;
@@ -28,7 +26,9 @@ class ProductController extends BaseController
 
 	public function getProduct( $id )
 	{
-		$product = $this->model->getProductById( $id );
+		// $product = $this->model->getProductById( $id );
+
+		$product = $this->model->fetch( 'products:id', $id );
 
 		if ( $product == true ) {
 			return $product;

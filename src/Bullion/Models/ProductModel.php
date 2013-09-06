@@ -9,7 +9,7 @@ class ProductModel extends BaseModel
 
 	public function addProduct( $product )
 	{
-		
+		d( self::$app );
 	}
 
 	public function getProductById( int $id )
