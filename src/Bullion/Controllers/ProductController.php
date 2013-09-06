@@ -15,6 +15,7 @@ class ProductController extends BaseController
 
 	public function addProduct( array $product )
 	{
+		// 'tablename', 'data'
 		$product = $this->model->persist( 'products', $product );
 
 		if ( $product == true ) {
@@ -26,18 +27,19 @@ class ProductController extends BaseController
 
 	public function getProduct( $id )
 	{
-		// $product = $this->model->getProductById( $id );
-
+		// 'tablename:column_name', 'search term'
 		$product = $this->model->fetch( 'products:id', $id );
 
-		if ( $product == true ) {
-			return $product;
+		$view = $this->view( 'Bullion:product_page', $product );
+
+		if ( $view == true ) {
+			return $view;
 		}
 
 		return false;
 	}
 
-	public function deleteProduct()
+	public function deleteProduct( $id )
 	{
 
 		$product = $this->model->deleteProduct( $id );
