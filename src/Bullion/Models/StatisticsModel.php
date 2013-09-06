@@ -6,9 +6,10 @@ use Rhodium\BaseModel;
 
 class StatisticsModel extends BaseModel
 {
-	public function __construct()
+	public function __construct( $params )
 	{
 		parent::__construct();
+		$this->params = $params;
 	}
 
 	public function recentSales()

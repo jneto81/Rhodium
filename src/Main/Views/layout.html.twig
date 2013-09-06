@@ -3,53 +3,49 @@
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block head %}
-            <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap-responsive.css" />
-            <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.css" />
-            <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css" />
-            <title>{% block title %}{% endblock %} - Rhodium</title>
+            <link rel="stylesheet" href="{{ app.request.basepath }}/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="{{ app.request.basepath }}/style.css" />
+            <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+            <title>{% block title %}{% endblock %} :: Rhodium</title>
         {% endblock %}
     </head>
     <body>
-        <div class="navbar navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <h1><a class="pull-left" href="#" name="">Rh.</a></h1>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#">Controllers</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#">Models</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#">Views</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#">Helpers</a></li>
-                    <li class="divider-vertical"></li>
+       <nav class="navbar navbar-default" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Rh.</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Shop</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Log-in</a></li>
+                  <li><a href="#">Log-out</a></li>
+                  <li><a href="#">Sign-up</a></li>
+                  <li><a href="#">Edit account</a></li>
                 </ul>
-                    <div class="btn-group pull-right">
-                        <a class="btn dropdown-toggle" href="http://www.github.com/EwanValentine/Rhodium.git">
-                            <i class="icon-user"></i> Github
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><i class="icon-share"></i> Logout</a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    <!--/.nav-collapse -->
-                </div>
-                <!--/.container-fluid -->
-            </div>
-            <!--/.navbar-inner -->
-        </div>
-        <!--/.navbar -->
+              </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+           
+          </div><!-- /.navbar-collapse -->
+        </nav>
         <div class="container" id="container">
             <h1>Rh.</h1>
             <p><i>Rhodium, It's elementary...</i></p>
@@ -63,5 +59,6 @@
                 {% endblock %}
             </div>
         </nav>
+        <script src="{{ app.request.basepath }}/dist/js/bootstrap.js"></script>
     </body>
 </html>

@@ -6,6 +6,102 @@
 
 	<p><b>For admin stuff...</b></p>
 
-	{{ totalSales }} - {{ totalValue }}
+	<div class="row fluid">
+		
+		<div class="col-lg-2">
+			
+			<h3>Sidebar</h3>
+
+			<div class="panel-group" id="accordion">
+			  <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+			          Products
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in">
+			      <div class="panel-body">
+						<ul>
+							<li>Add product</li>
+							<li>Delete product</li>
+							<li>View products</li>
+							<li>Edit product</li>
+						</ul>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+			          Categories
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse">
+			      <div class="panel-body">
+					<ul>
+						<li>Add category</li>
+						<li>Delete category</li>
+						<li>View category</li>
+						<li>Edit catiegory</li>
+					</ul>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading">
+			      <h4 class="panel-title">
+			        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+			          Orders
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseThree" class="panel-collapse collapse">
+			      <div class="panel-body">
+					<ul>
+						<li>Add order</li>
+						<li>Delete order</li>
+						<li>View order</li>
+						<li>Edit order</li>
+					</ul>
+			      </div>
+			    </div>
+			  </div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a href="#collapseFour" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion">Users</a>
+					</h4>
+				</div>
+				<div id="collapseFour" class="panel-collapse collapse">
+					<div class="panel-body">
+						<ul>
+							<li>Add user</li>
+							<li>Delete user</li>
+							<li>View user</li>
+							<li>Edit user</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+		<div class="col-lg-10">
+			
+			<h3>Main window</h3>
+
+			<p><b>Order history</b></p>
+
+			<p><b>Total sales today</b></p>
+
+		</div>
+
+	</div>
 
 {% endblock %}

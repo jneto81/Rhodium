@@ -51,18 +51,17 @@ class BaseController
 	 * @param  string $model accepts model name
 	 * @return object        returns instance of a model
 	 */
-	public function model( $model )
+	public function model( $model, array $params = null )
 	{
 
 		$model = explode( ':', $model);
 
 		$modelString = "" . $model[0] . "\Models\\" . $model[1] . "Model";
 
-		$model = new $modelString;
+		$model = new $modelString( $params );
 
 		return $model;
 	}
-
 
 	public function view( $view, $params = null )
 	{
