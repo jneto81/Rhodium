@@ -14,12 +14,8 @@
         }
     ],
     "autoload": {
-        "psr-0": {
-            "Rhodium\\": "app/"
-        },
         "classmap": [
-            "src/",
-            "app/Bullion/"
+            "src/"
         ]
     },
 	"require": {

@@ -1,6 +1,6 @@
 <?php 
 
-namespace YourAppName\Controllers;
+namespace Main\Controllers;
 
 use Rhodium\BaseController;
 
@@ -30,11 +30,10 @@ class HomeController extends BaseController
 
 	public function ourPage()
 	{
-
 		$params = array('param1' => 'Ayup, ', 'param2' => ' world!');
 		
-		$view = $this->view('index', $params);
-
+		$view = $this->view('Main:index', $params);
+		
 		return $view;
 	}
 }

@@ -1,9 +1,5 @@
 <?php 
 
-namespace IGIG;
-// See that namespace? Call it something that means something to you
-// or you application. Just like we named our core 'Rhodium'.
-// 'cos it's precious and shit.
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +13,7 @@ $app->match('/', function() use ( $app ) {
 	 * which will allow us to access some of the 
 	 * global functions that come with Silex.
 	 **/
-	$controller = new Controllers\HomeController( $app );	
+	$controller = new Main\Controllers\HomeController( $app );	
 	$content = $controller->ourPage();
 
 	return new Response ( $content );
@@ -26,7 +22,7 @@ $app->match('/', function() use ( $app ) {
 /** Shop front **/
 $app->match('/shop', function() use ( $app ) {
 
-	$controller = new Controllers\ShopController();
+	$controller = new Main\Controllers\ShopController();
 	$content = $controller->getView();
 
 	return new Response( $content );
@@ -51,8 +47,8 @@ $app->post('/checkout', function ( Request $request ) use ( $app ) {
 /** Admin */
 $app->match('/admin', function() use ( $app ) {
 
-	$controller = new \Bullion\Controllers\AdminController();
-	$content = $controller->getAdminPanel();
+	$controller = new Bullion\Controllers\AdminController();
+	$content = $controller->getAdminControlPanel();
 
 	return new Response ( $content );
 });
@@ -105,7 +101,7 @@ $app->post('/admin/products/update/{id}', function( Request $request, $id ) use 
 	);
 
 	$controller = new \Bullion\Controllers\ProductController();
-	$content = $controller->updateProduct( $id, $product )
+	$content = $controller->updateProduct( $id, $product );
 
 	return new Response ( $content );
 });

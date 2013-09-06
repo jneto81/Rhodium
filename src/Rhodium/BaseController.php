@@ -2,9 +2,8 @@
 
 namespace Rhodium;
 
-use Rhodium\Helpers\Loader;
-
 use Silex\Application;
+use Rhodium\Helpers\Loader;
 
 /**
  * BaseController
@@ -54,7 +53,10 @@ class BaseController
 	 */
 	public function model( $model )
 	{
-		$modelString = "" . self::$app['app.name'] . "\Models\\" . $model . "Model";
+
+		$model = explode( ':', $model);
+
+		$modelString = "" . $model[0] . "\Models\\" . $model[1] . "Model";
 
 		$model = new $modelString;
 
@@ -62,17 +64,20 @@ class BaseController
 	}
 
 
-	public function view( $view, $composite = null, $params = null )
+	public function view( $view, $params = null )
 	{
 
-		if ( isset( $composite ) ) {
-			$view = self::$app['twig.composite']->render( $composite . '/' . $view . '.html.twig');
-		}
+		$view = explode( ':', $view );
+
+		$alloy = $view[0];
+		$view = $view[1];
+
+		$path = $alloy . '/Views/' . $view . '.html.twig';
 
 		if ( isset( $params ) ) {
-			$view = self::$app['twig']->render( $view . '.html.twig', $params );
+			$view = self::$app['twig']->render( $path , $params );
 		} else {
-			$view = self::$app['twig']->render( $view . '.html.twig');
+			$view = self::$app['twig']->render( $path );
 		}
 
 		return $view;

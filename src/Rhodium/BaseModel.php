@@ -24,7 +24,7 @@ class BaseModel
 		if ( is_array( $stuff ) ) {
 			$db = self::$app['db']->insert( $table, $stuff);
 		} else {
-			$db = self::$app['db']->insert( $table, $stuff)
+			$db = self::$app['db']->insert( $table, $stuff);
 		}
 	}
 }

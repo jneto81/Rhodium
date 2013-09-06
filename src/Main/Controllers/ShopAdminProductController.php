@@ -1,6 +1,6 @@
 <?php 
 
-namespace IGIG\Controllers;
+namespace Main\Controllers;
 
 use Rhodium\BaseController;
 

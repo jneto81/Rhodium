@@ -1,6 +1,6 @@
 <?php 
 
-namespace IGIG\Controllers;
+namespace Main\Controllers;
 
 use Rhodium\BaseController;
 
@@ -8,7 +8,7 @@ class ShopController extends BaseController
 {
 	public function getView()
 	{
-		$view = $this->view('shop');
+		$view = $this->view('Main:shop');
 
 		return $view;
 	}

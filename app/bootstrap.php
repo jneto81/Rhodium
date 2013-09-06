@@ -82,8 +82,6 @@ namespace
     $dbcfg = new DatabaseConfig();
     $dbcfg->setFilePath( $app );
 
-    // d( $dbcfg::databaseParams() );
-
     $app->register(new DoctrineServiceProvider(), array(
         'db.options' => array(
             'driver' => 'pdo_mysql',
@@ -108,18 +106,18 @@ namespace
 
     /** Register twig service provider */
     $app->register(new TwigServiceProvider(), array(
-        'twig.path'             => array(__DIR__ . '/../src/Views'),
+        'twig.path'             => array(__DIR__ . '/../src/'),
         'twig.options'          => array(
+            'debug' => true,
             'cache' => false, // __DIR__ . '/cache', 
             'strict_variables' => false
-        ),
-        'twig.composites'            => array(__DIR__ . '/../app/Composites/'),
+        )
     ));
 
     /** Register form service provider */
     $app->register(new FormServiceProvider());
 
-    $app['app.name'] = 'YourAppName';
+    $app['app.name'] = 'Main';
 
     $controller = new BaseController();
     $controller->setApp( $app );
