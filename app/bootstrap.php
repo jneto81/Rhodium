@@ -21,6 +21,8 @@ namespace
         Silex\Provider\SessionServiceProvider,
         Silex\Provider\FormServiceProvider,
         Silex\Provider\DoctrineServiceProvider,
+        Silex\Provider\ServiceControllerServiceProvider,
+        Silex\Provider\SecurityServiceProvider,
         Silex\Provider;
 
     use Rhodium\Config\DatabaseConfig,
@@ -103,7 +105,9 @@ namespace
         'monolog.name'          => 'kp_app',
         'monolog.level'         => 300 // = Logger::WARNING
     ));
-
+    
+    $app->register(new ServiceControllerServiceProvider()); 
+    
     /** Register twig service provider */
     $app->register(new TwigServiceProvider(), array(
         'twig.path'             => array(__DIR__ . '/../src/'),
