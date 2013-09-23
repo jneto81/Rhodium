@@ -1,0 +1,7 @@
+{
+	"dbtype": "mysql",
+	"dbuser": "root",
+	"dbpass": "",
+	"dbname": "",
+	"dbhost": "localhost"
+}
