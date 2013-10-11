@@ -4,6 +4,9 @@
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+/** Load package specific routes */
+require_once('Alloy/Routes/Main.php');
+
 /** Homepage */
 $app->match('/', function() use ( $app ) {
 
@@ -15,6 +18,14 @@ $app->match('/', function() use ( $app ) {
 	 **/
 	$controller = new Main\Controllers\HomeController( $app );	
 	$content = $controller->ourPage();
+
+	return new Response ( $content );
+});
+
+$app->match('/form', function() use( $app ) {
+
+	$controller = new Main\Controllers\HomeController();
+	$content 	= $controller->form();
 
 	return new Response ( $content );
 });

@@ -3,9 +3,11 @@
 
 set_time_limit(0);
 
+use Rhodium\Commands\CreateController;
+
 $app = require_once __DIR__.'/silex.php';
 
 $application = $app['console'];
-// $application->add(new MyCommand());
+$application->add( new CreateController( $app ) );
 
 $application->run();

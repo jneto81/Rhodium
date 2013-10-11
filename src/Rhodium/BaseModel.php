@@ -4,6 +4,16 @@ namespace Rhodium;
 
 use Rhodium\Database\DBCore;
 
+/**
+ * BaseModel
+ *
+ * The base model class handles 
+ * lower level database abstraction
+ * for classes which extend it.
+ *
+ * @author  	Ewan Valentine <ewan.valentine89@gmail.com>
+ * @copyright 	Ewan Valentine 2013
+ */
 class BaseModel
 {
 
@@ -11,6 +21,7 @@ class BaseModel
 
 	public function __construct()
 	{
+		/** @todo this could be DI'd, use a IoC */
 		$this->db = new DBCore();
 	}
 

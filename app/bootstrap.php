@@ -73,7 +73,7 @@ namespace
 
     /** Config path */
     $app['config.path'] = __DIR__ . '/config';
-
+    
     /** Register session provider */
     $app->register(new SessionServiceProvider());
 

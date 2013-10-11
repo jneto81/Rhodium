@@ -46,6 +46,9 @@ $app = new Silex\Application();
 
 $app['config.path'] = '/config';
 
+/** Base path */
+$app['base.path'] = __DIR__;
+
 /** Third party console service provider for Silex */
 use Knp\Provider\ConsoleServiceProvider;
 

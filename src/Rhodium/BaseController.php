@@ -90,7 +90,7 @@ class BaseController
 	 * @param  string $helper helper name
 	 * @return object         helper object
 	 */
-	public function helper($helper)
+	public function helper( $helper )
 	{
 
 	}
