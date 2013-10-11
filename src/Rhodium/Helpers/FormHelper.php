@@ -20,4 +20,11 @@ class FormHelper extends FormHelperAbstract
 	{
 		return $this->form( $form, $collection );
 	}
+
+	public function load( $template )
+	{
+		$template = $this->template( $template );
+
+		return $template;
+	}
 }

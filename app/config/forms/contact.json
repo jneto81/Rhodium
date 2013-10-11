@@ -1,0 +1,39 @@
+{
+	"input": {
+		"type"			: "password",
+		"class"			: "json-form-class",
+		"id"			: "form-id",
+		"name"			: "password",
+		"placeholder"	: "",
+		"required"		: "required"
+	},
+	"input": {
+		"type"			: "file",
+		"class"			: "json-file-class",
+		"id"			: "file",
+		"name"			: "json-file",
+		"placeholder"	: "",
+		"required"		: ""
+	},
+	"select": {
+		"class"			: "select-class",
+		"id"			: "select-id",
+		"name"			: "selectahhh",
+		"options" : {
+			"s1": "Some shit",
+			"s2": "Some other shit"
+		}
+	},
+	"submit": {
+		"class"			: "form-control",
+		"id"			: "",
+		"name"			: "submit",
+		"value"			: "Submit dat shit"
+	},
+	"form": {
+		"action"	: "/user/json/form",
+		"method"	: "post",
+		"class"		: "form-class",
+		"id"		: ""
+	}
+}

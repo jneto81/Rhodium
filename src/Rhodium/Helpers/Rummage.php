@@ -17,6 +17,18 @@ class Rummage
 
 	public $data;
 	public $file;
+	public static $app;
+	public static $configPath;
+
+	public static function setConfigPath( $app )
+	{
+		self::$configPath = $app['config.path'];
+	}
+
+	public static function getConfigPath()
+	{
+		return self::$configPath;
+	}
 
 	/**
 	 * setFileLocation
@@ -28,7 +40,7 @@ class Rummage
 	 * @param string $name Filename.
 	 * @param string $ext  File mime type.
 	 */
-	public function setFileLocation($path, $name, $ext)
+	public function setFileLocation( $path, $name, $ext )
 	{
 		$this->file = $path . '/' . $name . '.' . $ext;
 	}

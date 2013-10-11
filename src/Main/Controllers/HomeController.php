@@ -41,51 +41,57 @@ class HomeController extends BaseController
 	{
 		$form = new \Rhodium\Helpers\FormHelper();
 
-		$collection[] = $form->input(
-			array(
-				'type'			=> 'password',
-				'class' 		=> 'test-class',
-				'id'			=> 'test-id',
-				'name'			=> 'test-name',
-				'placeholder' 	=> 'test-placeholder',
-				'required'		=> 'required'
-				)
-			);
+		// $collection[] = $form->input(
+		// 	array(
+		// 		'type'			=> 'password',
+		// 		'class' 		=> 'test-class',
+		// 		'id'			=> 'test-id',
+		// 		'name'			=> 'test-name',
+		// 		'placeholder' 	=> 'test-placeholder',
+		// 		'required'		=> 'required'
+		// 		)
+		// 	);
 
-		$collection[] = $form->input(
-			array(
-				'type'			=> 'file',
-				'class' 		=> 'test-class form-control',
-				'id'			=> 'test-id2',
-				'name'			=> 'test-name',
-				'placeholder' 	=> 'test-file',
-				'required'		=> ''
-			)
-		);
+		// $collection[] = $form->input(
+		// 	array(
+		// 		'type'			=> 'file',
+		// 		'class' 		=> 'test-class form-control',
+		// 		'id'			=> 'test-id2',
+		// 		'name'			=> 'test-name',
+		// 		'placeholder' 	=> 'test-file',
+		// 		'required'		=> ''
+		// 	)
+		// );
 
-		$collection[] = $form->select(
-			array(
-				'class' 	=> 'form-control',
-				'id'		=> '',
-				'name'		=> 'some-select',
-				'options' 	=> array (
-					'value1' => 'Value 1',
-					'value2' => 'Value 2'
-				)
-			)
-		);
+		// $collection[] = $form->select(
+		// 	array(
+		// 		'class' 	=> 'form-control',
+		// 		'id'		=> '',
+		// 		'name'		=> 'some-select',
+		// 		'options' 	=> array (
+		// 			'value1' => 'Value 1',
+		// 			'value2' => 'Value 2'
+		// 		)
+		// 	)
+		// );
 
-		$formParams = array (
-			'action' => '/user/post',
-			'method' => 'post',
-			'class'	 => 'form-class',
-			'id'	 => 'form-id'
-		);
+		// $formParams = array (
+		// 	'action' => '/user/post',
+		// 	'method' => 'post',
+		// 	'class'	 => 'form-class',
+		// 	'id'	 => 'form-id'
+		// );
 
-		$form = $form->create( $formParams, $collection );
+		// $form = $form->create( $formParams, $collection );
+		$form = $form->load( 'contact' );
 
 		$view = $this->view( 'Main:form', array( 'form' => $form ) );
 
 		return $view;
+	}
+
+	public function jsonForm()
+	{
+
 	}
 }

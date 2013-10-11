@@ -2,6 +2,7 @@
 
 namespace Rhodium\Helpers;
 
+use Rhodium\Helpers\Rummage;
 /**
  * FormHelperAbstract
  *
@@ -16,9 +17,10 @@ abstract class FormHelperAbstract
 	abstract protected function input( $params );
 	abstract protected function select( $params );
 	abstract protected function create( $form, $collections );
+	abstract protected function load( $template );
 
 	// Common functions
-	
+
 	/**
 	 * input
 	 *
@@ -38,6 +40,17 @@ abstract class FormHelperAbstract
 		return $input;
 	}
 
+	public function submitElement( $params )
+	{
+		$input = '<input type="submit" 
+		name="'.$params['name'].'"
+		class="'.$params['class'].'"
+		id="'.$params['id'].'"
+		value="'.$params['value'].'" />';
+
+		return $input;
+	}
+
 	public function selectElement( $params )
 	{
 		$select = '<select name="'.$params['name'].'" 
@@ -53,6 +66,41 @@ abstract class FormHelperAbstract
 		return $select;
 	}
 
+	public function template( $template )
+	{
+		$this->rummage = new Rummage();
+		$path = $this->rummage->getConfigPath() . '/forms/';
+		$file = $this->rummage->setFileLocation( $path, $template, 'json' );
+		
+		$form = $this->rummage->parseJSONAsArray();
+
+		foreach ( $form as $key => $form ) {
+			
+			if( $key != 'form' ) {
+				$collection[$key] = $form; 
+			}
+		}
+
+		foreach ( $collection as $key => $element ) {
+
+			if ( $key == 'select' ) {
+				$html[] = $this->selectElement( $element );
+			}
+
+			if ( $key == 'input' ) {
+				$html[] = $this->inputElement( $element );
+			}
+
+			if( $key == 'submit' ) {
+				$html[] = $this->submitElement( $element );
+			}
+		}
+
+		$form = $this->form( $form, $html );
+
+		return $form;
+	}
+
 	/**
 	 * form
 	 *
@@ -64,14 +112,16 @@ abstract class FormHelperAbstract
 	 */
 	public function form( $params, $collection )
 	{
-		$form = '<form action="'.$params['action'].'" method="'.$params['method'].'" class="'.$params['class'].'" id="'.$params['id'].'">';
+		$form = '<form action="'.$params['action'].'" 
+		method="'.$params['method'].'" 
+		class="'.$params['class'].'" id="'.$params['id'].'">';
 		
 		foreach ( $collection as $element ) {
 			$form .= "\n";
 			$form .= $element;
 		}
 		
-		$form .= "\n</form>";
+		$form .= "</form>";
 
 		return $form;
 	}

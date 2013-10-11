@@ -84,6 +84,9 @@ namespace
     $dbcfg = new DatabaseConfig();
     $dbcfg->setFilePath( $app );
 
+    $rummage = new Rhodium\Helpers\Rummage();
+    $rummage->setConfigPath( $app );
+
     $app->register(new DoctrineServiceProvider(), array(
         'db.options' => array(
             'driver' => 'pdo_mysql',
