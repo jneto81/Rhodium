@@ -1,5 +1,5 @@
 {	
-	"name"        : "Rhodium/framework",
+	"name"        : "rhodium/rhodium",
     "type"        : "library",
     "description" : "MVC framework by Ewan Valentine",
     "keywords"    : ["framework"],
