@@ -69,7 +69,7 @@ abstract class FormHelperAbstract
 	public function template( $template )
 	{
 		$this->rummage = new Rummage();
-		$path = $this->rummage->getConfigPath() . '/forms/';
+		$path = $this->rummage->getConfigPath() . '/forms';
 		$file = $this->rummage->setFileLocation( $path, $template, 'json' );
 		
 		$form = $this->rummage->parseJSONAsArray();
@@ -77,7 +77,7 @@ abstract class FormHelperAbstract
 		foreach ( $form as $key => $form ) {
 			
 			if( $key != 'form' ) {
-				$collection[$key] = $form; 
+				$collection[$key] = $form;
 			}
 		}
 
@@ -93,6 +93,10 @@ abstract class FormHelperAbstract
 
 			if( $key == 'submit' ) {
 				$html[] = $this->submitElement( $element );
+			}
+
+			if( $key == 'password' ) {
+				$html[] = $this->inputElement( $element );
 			}
 		}
 
