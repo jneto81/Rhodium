@@ -1,7 +1,7 @@
 {
 	"dbtype": "mysql",
 	"dbuser": "root",
-	"dbpass": "drudkh",
+	"dbpass": "",
 	"dbname": "Scrape",
 	"dbhost": "localhost"
 }

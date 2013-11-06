@@ -87,14 +87,14 @@ namespace
     $rummage = new Rhodium\Helpers\Rummage();
     $rummage->setConfigPath( $app );
 
-    $app->register(new DoctrineServiceProvider(), array(
-        'db.options' => array(
-            'driver' => 'pdo_mysql',
-            'host'   => 'localhost',
-            'dbname' => 'Rhodium',
-            'user'   => 'root',
-            'password' => 'drudkh',
-            'charset' => 'utf8',
+    $app->register( new DoctrineServiceProvider(), array(
+        'db.options'    => array(
+            'driver'    => 'pdo_mysql',
+            'host'      => $dbcfg->getDbPass(),
+            'dbname'    => $dbcfg->getDbName(),
+            'user'      => $dbcfg->getDbUser(),
+            'password'  => $dbcfg->getDbPass(),
+            'charset'   => 'utf8',
         )
     ));
     
