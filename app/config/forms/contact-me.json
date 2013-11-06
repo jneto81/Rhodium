@@ -1,0 +1,30 @@
+{
+	"input": {
+		"name"			: "name",
+		"class"			: "form-control",
+		"id"			: "test",
+		"type"			: "text",
+		"placeholder"	: "Your name",
+		"required"		: "required"
+	},
+	"input": {
+		"name"			: "email",
+		"class"			: "form-control",
+		"id"			: "test",
+		"type"			: "email",
+		"placeholder"	: "Your e-mail",
+		"required"		: "required"
+	},
+	"submit": {
+		"name"			: "submit",
+		"id"			: "",
+		"class"			: "",
+		"value"			: "Submit"
+	},
+	"form": {
+		"action": "/message/submit",
+		"method": "post",
+		"class" : "",
+		"id"	: ""
+	}
+}
