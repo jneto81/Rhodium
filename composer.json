@@ -1,5 +1,5 @@
-{	
-	"name"        : "rhodium/rhodium",
+{   
+    "name"        : "rhodium/rhodium",
     "type"        : "library",
     "description" : "MVC framework by Ewan Valentine",
     "keywords"    : ["framework"],
@@ -14,18 +14,18 @@
         }
     ],
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-0": {
+            "": "src/"
+        }
     },
-	"require": {
-		"silex/silex": "1.0.*",
+    "require": {
+        "silex/silex": "1.0.*",
         "twig/twig": ">=1.8,<2.0-dev",
         "symfony/twig-bridge": "2.1.*",
         "monolog/monolog": ">=1.0.0",
         "symfony/security": "2.3.*",
         "symfony/form": "2.3.*",
-		"symfony/console": "2.3.*",
+        "symfony/console": "2.3.*",
         "knplabs/console-service-provider": "dev-master",
         "doctrine/dbal": "2.3.*"
     }
