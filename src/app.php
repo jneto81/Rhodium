@@ -4,6 +4,8 @@
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+Request::enableHttpMethodParameterOverride();
+
 /** Load package specific routes */
 // require_once('BundleName/Routes/BundleNameRoutes.php');
 
