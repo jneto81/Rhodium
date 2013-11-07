@@ -14,7 +14,7 @@ use Rhodium;
 class CreateController extends Command
 {
 
-	protected function configure( $app )
+	protected function configure()
 	{
 		$this	
 			->setName( 'Rhodium:Create:Controller' )
