@@ -26,7 +26,6 @@ namespace
         Silex\Provider;
 
     use Rhodium\Config\DatabaseConfig,
-        Rhodium\Helpers\Contacts,
         Rhodium\BaseController,
         Rhodium\BaseModel;
 
@@ -111,9 +110,22 @@ namespace
     
     $app->register(new ServiceControllerServiceProvider()); 
     
+    $twigPaths = array (
+        __DIR__ . '/../src/',
+        __DIR__ . '/../vendor/rhodium/rhodium-cms/src/Rhodium/CMS/',
+        __DIR__ . '/../vendor/rhodium/rhodium-bullion/src/Rhodium/Bullion/',
+        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM',
+    );
+
+    foreach ( $twigPaths as $path ) {
+        if ( is_dir( $path ) ) {
+            $paths[] = $path;
+        }
+    }
+
     /** Register twig service provider */
     $app->register(new TwigServiceProvider(), array(
-        'twig.path'             => array(__DIR__ . '/../src/'),
+        'twig.path'             => $paths,
         'twig.options'          => array(
             'debug' => true,
             'cache' => false, // __DIR__ . '/cache', 

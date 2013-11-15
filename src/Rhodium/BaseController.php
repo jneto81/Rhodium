@@ -68,10 +68,10 @@ class BaseController
 
 		$view = explode( ':', $view );
 
-		$alloy = $view[0];
+		$bundle = $view[0];
 		$view = $view[1];
 
-		$path = $alloy . '/Views/' . $view . '.html.twig';
+		$path = $bundle . '/Views/' . $view . '.html.twig';
 
 		if ( isset( $params ) ) {
 			$view = self::$app['twig']->render( $path , $params );
