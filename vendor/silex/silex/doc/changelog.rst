@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.2 (2013-10-30)
+------------------
+
+* Fixed SecurityServiceProvider to use null as a fake controller so that routes can be dumped
+
 1.0.1 (2013-07-04)
 ------------------
 

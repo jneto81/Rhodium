@@ -13,6 +13,7 @@
  */
 namespace
 {   
+    DEFINE('DS', DIRECTORY_SEPARATOR);
 
     use Silex\Provider\MonologServiceProvider, 
         Silex\Provider\TwigServiceProvider,
@@ -25,7 +26,7 @@ namespace
         Silex\Provider\SecurityServiceProvider,
         Silex\Provider;
 
-    use Rhodium\Config\DatabaseConfig,
+    use Rhodium\Database\DatabaseConfig,
         Rhodium\BaseController,
         Rhodium\BaseModel;
 
@@ -81,20 +82,12 @@ namespace
 
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
-    $dbcfg->setFilePath( $app );
 
     $rummage = new Rhodium\Helpers\Rummage();
     $rummage->setConfigPath( $app );
 
     $app->register( new DoctrineServiceProvider(), array(
-        'db.options'    => array(
-            'driver'    => 'pdo_mysql',
-            'host'      => $dbcfg->getDbPass(),
-            'dbname'    => $dbcfg->getDbName(),
-            'user'      => $dbcfg->getDbUser(),
-            'password'  => $dbcfg->getDbPass(),
-            'charset'   => 'utf8',
-        )
+        'db.options'    => $dbcfg->databaseParams()
     ));
     
     /** Register Http Cache service */
@@ -114,7 +107,8 @@ namespace
         __DIR__ . '/../src/',
         __DIR__ . '/../vendor/rhodium/rhodium-cms/src/Rhodium/CMS/',
         __DIR__ . '/../vendor/rhodium/rhodium-bullion/src/Rhodium/Bullion/',
-        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM',
+        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM/',
+        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM/',
     );
 
     foreach ( $twigPaths as $path ) {

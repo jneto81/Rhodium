@@ -21,6 +21,7 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Symfony\\Bridge\\Twig' => array($vendorDir . '/symfony/twig-bridge'),
     'Silex' => array($vendorDir . '/silex/silex/src'),
+    'Rhodium' => array($baseDir . '/app'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Pimple' => array($vendorDir . '/pimple/pimple/lib'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
@@ -32,4 +33,5 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
+    '' => array($baseDir . '/src'),
 );

@@ -43,7 +43,7 @@ use Silex\EventListener\StringToResponseListener;
  */
 class Application extends \Pimple implements HttpKernelInterface, TerminableInterface
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     const EARLY_EVENT = 512;
     const LATE_EVENT  = -512;
@@ -470,7 +470,7 @@ class Application extends \Pimple implements HttpKernelInterface, TerminableInte
     /**
      * Handles the request and delivers the response.
      *
-     * @param Request $request Request to process
+     * @param Request|null $request Request to process
      */
     public function run(Request $request = null)
     {
