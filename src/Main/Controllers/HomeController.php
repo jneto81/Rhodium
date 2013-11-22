@@ -30,10 +30,11 @@ class HomeController extends BaseController
 
 	public function ourPage()
 	{
-		$params = array('param1' => 'Ayup, ', 'param2' => ' world!');
-		
-		$view = $this->view('Main:index', $params);
-		
-		return $view;
+		return $this->view( 'Main:index' );
+	}
+
+	public function adminHome()
+	{
+		return $this->view( 'Admin:index' );
 	}
 }
