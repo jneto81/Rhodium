@@ -9,6 +9,8 @@ Request::enableHttpMethodParameterOverride();
 /** Load package specific routes */
 // require_once('BundleName/Routes/BundleNameRoutes.php');
 
+/** Deprecated */
+
 /** Homepage */
 $app->match('/', function() use ( $app ) {
 
