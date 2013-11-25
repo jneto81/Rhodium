@@ -4,6 +4,10 @@ namespace Rhodium;
 
 use Silex\Application;
 use Rhodium\Helpers\Loader;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+Request::enableHttpMethodParameterOverride();
 
 /**
  * BaseController
