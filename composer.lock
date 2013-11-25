@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1a738c76937fd5e12412d97968541272",
+    "hash": "3b02a6a389ba81a3d5bbd50109004118",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -745,6 +745,54 @@
             "time": "2013-10-30 08:45:28"
         },
         {
+            "name": "symfony/config",
+            "version": "v2.3.0",
+            "target-dir": "Symfony/Component/Config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Config.git",
+                "reference": "4d9aa3f2a8ec1e2ba495bd28ba3711242ce065f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/4d9aa3f2a8ec1e2ba495bd28ba3711242ce065f5",
+                "reference": "4d9aa3f2a8ec1e2ba495bd28ba3711242ce065f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/filesystem": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-05-18 21:11:24"
+        },
+        {
             "name": "symfony/console",
             "version": "v2.3.7",
             "target-dir": "Symfony/Component/Console",
@@ -906,6 +954,53 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
             "time": "2013-10-13 06:32:10"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.3.7",
+            "target-dir": "Symfony/Component/Filesystem",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Filesystem.git",
+                "reference": "2b8995042086c5552c94d33b5553c492e9cfc00e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/2b8995042086c5552c94d33b5553c492e9cfc00e",
+                "reference": "2b8995042086c5552c94d33b5553c492e9cfc00e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-09-19 09:45:20"
         },
         {
             "name": "symfony/form",
@@ -1505,6 +1600,53 @@
             "description": "Symfony Twig Bridge",
             "homepage": "http://symfony.com",
             "time": "2013-04-22 04:28:40"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v2.3.7",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Yaml.git",
+                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/c1bda5b459d792cb253de12c65beba3040163b2b",
+                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Yaml\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-10-17 11:48:01"
         },
         {
             "name": "twig/twig",

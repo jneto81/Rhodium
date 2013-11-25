@@ -1,0 +1,7 @@
+home:
+  path: /
+  defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }
+
+homeHome:
+  path: /home 
+  defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }

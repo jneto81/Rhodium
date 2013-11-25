@@ -24,6 +24,9 @@ namespace
         Silex\Provider\DoctrineServiceProvider,
         Silex\Provider\ServiceControllerServiceProvider,
         Silex\Provider\SecurityServiceProvider,
+        Symfony\Component\Config\FileLocator,
+        Symfony\Component\Routing\Loader\YamlFileLoader,
+        Symfony\Component\Routing\RouteCollection,
         Silex\Provider;
 
     use Rhodium\Database\DatabaseConfig,
@@ -100,6 +103,14 @@ namespace
         'monolog.name'          => 'kp_app',
         'monolog.level'         => 300 // = Logger::WARNING
     ));
+
+    $app['routes'] = $app->extend('routes', function (RouteCollection $routes, $app) {
+        $loader     = new YamlFileLoader( new FileLocator(__DIR__ . '/config' ) );
+        $collection = $loader->load( 'routes.yml' );
+        $routes->addCollection($collection);
+     
+        return $routes;
+    });
     
     $app->register(new ServiceControllerServiceProvider()); 
     
@@ -128,7 +139,7 @@ namespace
     ));
 
     /** Register form service provider */
-    $app->register(new FormServiceProvider());
+    $app->register( new FormServiceProvider() );
 
     $app['app.name'] = 'Main';
 

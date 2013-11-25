@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
+    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Security\\' => array($vendorDir . '/symfony/security'),
     'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
     'Symfony\\Component\\PropertyAccess\\' => array($vendorDir . '/symfony/property-access'),
@@ -16,12 +17,13 @@ return array(
     'Symfony\\Component\\HttpKernel\\' => array($vendorDir . '/symfony/http-kernel'),
     'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
     'Symfony\\Component\\Form\\' => array($vendorDir . '/symfony/form'),
+    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
+    'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Symfony\\Bridge\\Twig' => array($vendorDir . '/symfony/twig-bridge'),
     'Silex' => array($vendorDir . '/silex/silex/src'),
-    'Rhodium' => array($baseDir . '/app'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Pimple' => array($vendorDir . '/pimple/pimple/lib'),
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
@@ -33,5 +35,5 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),
     'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
-    '' => array($baseDir . '/src'),
+    '' => array($baseDir . '/src', $baseDir . '/app'),
 );
