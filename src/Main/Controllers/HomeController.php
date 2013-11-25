@@ -35,6 +35,6 @@ class HomeController extends BaseController
 
 	public function adminHome()
 	{
-		return $this->view( 'Admin:index' );
+		return $this->view( 'Main:admin' );
 	}
 }

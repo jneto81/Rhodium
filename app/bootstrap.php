@@ -104,10 +104,10 @@ namespace
         'monolog.level'         => 300 // = Logger::WARNING
     ));
 
-    $app['routes'] = $app->extend('routes', function (RouteCollection $routes, $app) {
+    $app['routes'] = $app->extend('routes', function ( RouteCollection $routes, $app ) {
         $loader     = new YamlFileLoader( new FileLocator(__DIR__ . '/config' ) );
         $collection = $loader->load( 'routes.yml' );
-        $routes->addCollection($collection);
+        $routes->addCollection( $collection );
      
         return $routes;
     });

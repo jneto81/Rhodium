@@ -116,7 +116,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
       <div class="header-inner">
          <!-- BEGIN LOGO -->  
          <a class="navbar-brand" href="{{ app.request.baseURL }}/admin/dashboard">
-            <h3 style="padding:0; margin-top:-5px; margin-left: 10px;">Digital::Union</h3>
+            <h3 style="padding:0; margin-top:-5px; margin-left: 10px;">Rhodium</h3>
          </a>
          <!-- END LOGO -->
          <!-- BEGIN RESPONSIVE MENU TOGGLER --> 
@@ -443,9 +443,9 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <div class="page-container">
       <!-- BEGIN SIDEBAR -->
          {% if app.session.get( 'user' ).role == 1 %}
-            {% include 'Admin/Views/admin_sidebar.html.twig' %}
+            {% include 'Main/Views/admin_sidebar.html.twig' %}
          {% else %}
-            {% include 'Users/Views/user_sidebar.html.twig' %}
+            {% include 'Main/Views/user_sidebar.html.twig' %}
          {% endif %}
       <!-- END SIDEBAR MENU -->
       </div>
@@ -574,7 +574,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
    <!-- BEGIN FOOTER -->
    <div class="footer">
       <div class="footer-inner">
-         2013 &copy; Is It Vegan? By Ewan Valentine.
+         2013 &copy; Rhodium By Ewan Valentine.
       </div>
       <div class="footer-tools">
          <span class="go-top">
