@@ -46,6 +46,16 @@ class BaseController
 		self::$app = $app;
 	}
 
+	public function make( $content, $code = null )
+	{
+		if ( isset( $code ) ) {
+			return new Response( $content, $code );
+		} else {
+			return new Response( $content );
+		}
+		
+	}
+
 	/**
 	 * model
 	 *
