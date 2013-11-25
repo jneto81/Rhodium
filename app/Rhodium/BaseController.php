@@ -46,6 +46,30 @@ class BaseController
 		self::$app = $app;
 	}
 
+	public function isLoggedIn()
+	{
+		$user = self::$app['session']->get( 'user' );
+
+		if ( null === $user ) {
+        	return self::$app->redirect('/home');
+    	}
+	}
+
+	public function isAdmin()
+	{
+		$user = self::$app['session']->get( 'user' );
+
+		if ( null === $user ) {
+        	return self::$app->redirect('/home');
+    	}
+
+    	if ( $user['role'] == 1 ) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+	}
+
 	public function make( $content, $code = null )
 	{
 		if ( isset( $code ) ) {
