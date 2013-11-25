@@ -1,3 +1,6 @@
+imports:
+  resource: '../../src/Main/Routes/MainRoutes.yml'
+
 home:
   path: /
   defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }
