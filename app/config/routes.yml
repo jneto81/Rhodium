@@ -8,3 +8,7 @@ home:
 homeHome:
   path: /home 
   defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }
+
+form_test:
+  path: /form/test
+  defaults: { _controller: 'Main\Controllers\HomeController::formTest' }
