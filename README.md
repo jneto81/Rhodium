@@ -1,7 +1,7 @@
 Rhodium
 ======
 
-https://travis-ci.org/Rhodium-Digital/Rhodium.png
+[![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/Rhodium-Digital/Rhodium)
 
 Lightweight MVC framework based on Silex components.
 
