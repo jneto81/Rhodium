@@ -24,6 +24,7 @@ class DatabaseConfig
 	 */
 	public function __construct()
 	{
+		$this->dbaldt = 'pdo_mysql';
 		$this->dbtype = 'mysql';
 		$this->dbname = 'Rhodium';
 		$this->dbuser = 'root';
@@ -41,7 +42,7 @@ class DatabaseConfig
 
 		// Doctrine friendly naming.
 		$params = array(
-			'driver'   => $this->dbtype,
+			'driver'   => $this->dbaldt,
 	        'user'     => $this->dbuser,
 	        'password' => $this->dbpass,
 	        'dbname'   => $this->dbname,
