@@ -1,7 +1,7 @@
 Rhodium
 ======
 
-Version 2.0
+Version 2.1
 
 Lightweight MVC framework based on Silex components.
 
