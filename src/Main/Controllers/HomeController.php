@@ -37,4 +37,22 @@ class HomeController extends BaseController
 	{
 		return $this->view( 'Main:admin' );
 	}
+
+	public function formTest()
+	{
+		$data = array (
+			'name' 	=> 'Your name',
+			'email'	=> 'Your e-mail'
+		);
+
+		$form = self::$app['form.factory']->createBuilder( 'form', $data )
+			->add( 'name' )
+			->add( 'email' )
+			->add( 'department', 'choice', array (
+				'choices'  => array ( 1=> 'Marketing', 2 => 'Finance' ),
+				'expanded' => true,
+			))->getForm();
+
+		return $this->view( 'Main:form', array ( 'form' => $form->createView() ) );
+	}
 }

@@ -15,19 +15,21 @@ namespace
 {   
     DEFINE('DS', DIRECTORY_SEPARATOR);
 
-    use Silex\Provider\MonologServiceProvider, 
+    use Silex\Provider,
         Silex\Provider\TwigServiceProvider,
-        Silex\Provider\UrlGeneratorServiceProvider,
-        Silex\Provider\HttpCacheServiceProvider,
-        Silex\Provider\SessionServiceProvider,
         Silex\Provider\FormServiceProvider,
+        Silex\Provider\MonologServiceProvider, 
+        Silex\Provider\SessionServiceProvider,
         Silex\Provider\DoctrineServiceProvider,
-        Silex\Provider\ServiceControllerServiceProvider,
         Silex\Provider\SecurityServiceProvider,
+        Silex\Provider\HttpCacheServiceProvider,
+        Silex\Provider\TranslationServiceProvider,
+        Silex\Provider\UrlGeneratorServiceProvider,
+        Silex\Provider\ServiceControllerServiceProvider,
+        Silex\Provider\SwiftmailerServiceProvider,
         Symfony\Component\Config\FileLocator,
-        Symfony\Component\Routing\Loader\YamlFileLoader,
         Symfony\Component\Routing\RouteCollection,
-        Silex\Provider;
+        Symfony\Component\Routing\Loader\YamlFileLoader;
 
     use Rhodium\Database\DatabaseConfig,
         Rhodium\BaseController,
@@ -78,23 +80,24 @@ namespace
     $app['config.path'] = __DIR__ . '/config';
     
     /** Register session provider */
-    $app->register(new SessionServiceProvider());
+    $app->register( new SessionServiceProvider() );
 
     /** Register Url generator service provider */
-    $app->register(new UrlGeneratorServiceProvider());
+    $app->register( new UrlGeneratorServiceProvider() );
+
+    $app->register( new TranslationServiceProvider(), array(
+        'translator.messages' => array(),
+    ));
 
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
 
-    $rummage = new Rhodium\Helpers\Rummage();
-    $rummage->setConfigPath( $app );
-
     $app->register( new DoctrineServiceProvider(), array(
         'db.options'    => $dbcfg->databaseParams()
     ));
-    
+
     /** Register Http Cache service */
-    $app->register(new HttpCacheServiceProvider());
+    $app->register( new HttpCacheServiceProvider() );
     $app['http_cache.cache_dir'] = $app['cache.path'] . '/http';
 
     /** Register mongolog logging service provider */
@@ -112,8 +115,23 @@ namespace
         return $routes;
     });
     
-    $app->register(new ServiceControllerServiceProvider()); 
-    
+    $app->register( new ServiceControllerServiceProvider() ); 
+
+    $app->register( new SecurityServiceProvider() );
+
+    $app['security.firewalls'] = array (
+        'admin' => array (
+            'pattern' => '^/admin/',
+            'form'    => array (
+                'login_path' => '/login',
+                'check_path' => '/login/check'
+            ),
+            'users' => array (
+                'admin' => 'admin'
+            ),
+        ),
+    );
+
     $twigPaths = array (
         __DIR__ . '/../src/',
         __DIR__ . '/../vendor/rhodium/rhodium-cms/src/Rhodium/CMS/',
@@ -129,7 +147,7 @@ namespace
     }
 
     /** Register twig service provider */
-    $app->register(new TwigServiceProvider(), array(
+    $app->register( new TwigServiceProvider(), array(
         'twig.path'             => $paths,
         'twig.options'          => array(
             'debug' => true,
@@ -137,6 +155,16 @@ namespace
             'strict_variables' => false
         )
     ));
+
+    $app->register( new SwiftmailerServiceProvider() );
+
+    // Use: 
+    //     $message = \Swift_Message::newInstance()
+    //         ->setSubject( 'Feedback' )
+    //         ->setFrom( 'Nob \'ead' )
+    //         ->setTo( 'person@gmail.com' )
+    //         ->setBody( $app['request']->get('message') );
+    //     $app['mailer']->send( $message );
 
     /** Register form service provider */
     $app->register( new FormServiceProvider() );
