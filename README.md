@@ -1,6 +1,8 @@
 Rhodium
 ======
 
+https://travis-ci.org/Rhodium-Digital/Rhodium.png
+
 Lightweight MVC framework based on Silex components.
 
 Still in early development stages, but does work, nicely! 
