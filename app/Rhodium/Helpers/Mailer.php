@@ -1,6 +1,6 @@
 <?php 
 
-namespace Rhodium;
+namespace Rhodium\Helpers;
 
 use Rhodium\Helpers\Rummage;
 
