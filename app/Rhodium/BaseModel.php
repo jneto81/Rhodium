@@ -65,11 +65,4 @@ class BaseModel
 
 		return false;
 	}
-
-	// This may be a little too ambitious, but... see what you can do...
-	public function update( $query, $product )
-	{
-		$raw = explode( ':', $query);
-		// table:
-	}
 }

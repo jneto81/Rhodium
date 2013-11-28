@@ -92,7 +92,7 @@ class BaseController
 	public function model( $model, array $params = null )
 	{
 
-		$model = explode( ':', $model);
+		$model = explode( ':', $model );
 
 		$modelString = "" . $model[0] . "\Models\\" . $model[1] . "Model";
 
