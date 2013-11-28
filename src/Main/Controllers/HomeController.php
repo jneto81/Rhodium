@@ -26,10 +26,13 @@ class HomeController extends BaseController
 	public function __construct()
 	{
 		parent::__construct();
+		$this->model = $this->model( 'Main:Test' );
 	}
 
 	public function ourPage()
 	{
+		$test = $this->model->test();
+
 		return $this->view( 'Main:index' );
 	}
 

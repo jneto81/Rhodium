@@ -37,6 +37,7 @@ namespace
         Rhodium\BaseModel;
 
     use Geocoder\Provider\GeocoderServiceProvider;
+    use Ruckuus\Silex\ActiveRecordServiceProvider;
 
     /** Global functions */
 
@@ -112,6 +113,12 @@ namespace
 
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
+    
+    $app->register( new ActiveRecordServiceProvider(), array(
+        'ar.model_dir' => __DIR__ . '.',
+        'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
+        'ar.default_connection' => 'development',
+    ));
 
     $app->register( new DoctrineServiceProvider(), array(
         'db.options'    => $dbcfg->databaseParams()

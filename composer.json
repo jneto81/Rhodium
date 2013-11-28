@@ -31,6 +31,7 @@
         "symfony/translation": "2.3.*",
         "knplabs/console-service-provider": "dev-master",
         "doctrine/dbal": "2.3.*",
+        "ruckuus/php-activerecord-service-provider": "dev-master",
         "phpunit/phpunit": "3.7.*",
         "geocoder-php/geocoder-service-provider": "@stable",
         "ttools/ttools": "dev-master"
