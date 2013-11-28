@@ -26,14 +26,17 @@ namespace
         Silex\Provider\TranslationServiceProvider,
         Silex\Provider\UrlGeneratorServiceProvider,
         Silex\Provider\ServiceControllerServiceProvider,
-        Silex\Provider\SwiftmailerServiceProvider,
-        Symfony\Component\Config\FileLocator,
+        Silex\Provider\SwiftmailerServiceProvider;
+
+    use Symfony\Component\Config\FileLocator,
         Symfony\Component\Routing\RouteCollection,
         Symfony\Component\Routing\Loader\YamlFileLoader;
 
     use Rhodium\Database\DatabaseConfig,
         Rhodium\BaseController,
         Rhodium\BaseModel;
+
+    use Geocoder\Provider\GeocoderServiceProvider;
 
     /** Global functions */
 
@@ -89,12 +92,33 @@ namespace
         'translator.messages' => array(),
     ));
 
+
+    $twitter = array (
+        'consumer_key'        => '',
+        'consumer_secret'     => '',
+        'access_token'        => '',
+        'access_token_secret' => '',
+    );
+
+    $app['twitter'] = new \TTools\App( $twitter );
+    /** Get your timeline */
+    // $tl = $app['twitter']->getTimeline();
+    
+    /** Get specific user */
+    // $timeline = $app['twitter']->getUserTimeline('VICEUK', 'VICEUK', 10); 
+    // foreach ( $timeline as $tweet ) {
+    //     echo $tweet['text'] . "<br />";
+    // }
+
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
 
     $app->register( new DoctrineServiceProvider(), array(
         'db.options'    => $dbcfg->databaseParams()
     ));
+
+    /** Geolocation */
+    $app->register( new GeocoderServiceProvider() );
 
     /** Register Http Cache service */
     $app->register( new HttpCacheServiceProvider() );
@@ -145,6 +169,7 @@ namespace
             $paths[] = $path;
         }
     }
+
 
     /** Register twig service provider */
     $app->register( new TwigServiceProvider(), array(

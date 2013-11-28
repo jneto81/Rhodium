@@ -31,6 +31,8 @@
         "symfony/translation": "2.3.*",
         "knplabs/console-service-provider": "dev-master",
         "doctrine/dbal": "2.3.*",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "3.7.*",
+        "geocoder-php/geocoder-service-provider": "@stable",
+        "ttools/ttools": "dev-master"
     }
 }
