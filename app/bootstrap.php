@@ -43,7 +43,7 @@ namespace
     /** 
     * Cheers to the guys at Message, Brighton 
     * for showing me this cheeky little number. 
-    * Though 'd' and 'de' is nicer to shout out 
+    * 'd' and 'de' is nicer to shout out 
     * loud than 'take a dump'.
     */
 
@@ -208,6 +208,3 @@ namespace
     /** Returns Silex\Application as var $app */
     return $app;
 }
-
-
-
