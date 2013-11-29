@@ -1,7 +1,0 @@
-{
-	"dbtype": "mysql",
-	"dbuser": "root",
-	"dbpass": "",
-	"dbname": "Scrape",
-	"dbhost": "localhost"
-}
