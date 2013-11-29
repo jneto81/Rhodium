@@ -3,7 +3,7 @@
     "type"        : "library",
     "description" : "MVC framework by Ewan Valentine",
     "keywords"    : ["framework"],
-    "homepage"    : "https://github.com/EwanValentine/Rhodium.git",
+    "homepage"    : "https://github.com/Rhodium-Digital/Rhodium.git",
     "license"     : "MIT",
     "authors"     : [
         {
