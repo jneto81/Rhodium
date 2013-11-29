@@ -36,7 +36,6 @@ namespace
         Rhodium\BaseController,
         Rhodium\BaseModel;
 
-    use Geocoder\Provider\GeocoderServiceProvider;
     use Ruckuus\Silex\ActiveRecordServiceProvider;
 
     /** Global functions */
@@ -101,16 +100,6 @@ namespace
         'access_token_secret' => '',
     );
 
-    $app['twitter'] = new \TTools\App( $twitter );
-    /** Get your timeline */
-    // $tl = $app['twitter']->getTimeline();
-    
-    /** Get specific user */
-    // $timeline = $app['twitter']->getUserTimeline('VICEUK', 'VICEUK', 10); 
-    // foreach ( $timeline as $tweet ) {
-    //     echo $tweet['text'] . "<br />";
-    // }
-
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
     
@@ -119,13 +108,6 @@ namespace
         'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
         'ar.default_connection' => 'development',
     ));
-
-    $app->register( new DoctrineServiceProvider(), array(
-        'db.options'    => $dbcfg->databaseParams()
-    ));
-
-    /** Geolocation */
-    $app->register( new GeocoderServiceProvider() );
 
     /** Register Http Cache service */
     $app->register( new HttpCacheServiceProvider() );
