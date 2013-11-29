@@ -1,3 +1,4 @@
 test:
   path: /test
   defaults: { _controller: 'Main\Controllers\HomeController::adminHome' }
+
