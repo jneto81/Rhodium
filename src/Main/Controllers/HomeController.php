@@ -40,4 +40,11 @@ class HomeController extends BaseController
 	{
 		return $this->view( 'Main:admin' );
 	}
+
+	public function test( $param )
+	{
+		$data = $this->model->lastName( $param );
+
+		return $this->view( 'Main:index', array( 'data' => $data ) );
+	}
 }

@@ -13,25 +13,41 @@ use Rhodium;
 
 class CreateModel extends Command
 {
+
 	protected function configure()
 	{
-		$this
+		$this	
 			->setName( 'Rhodium:Create:Model' )
 			->setDescription( 'Creates a model.' )
-			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name.' )
-			->addOption( 'base', null, InputOption::VALUE_OPTIONAL, 'Does this extend the base model?');
+			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and bundle location, Bundle:Name' );
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output )
 	{
-		$base = $input->getOption( 'base' );
 		$class = $input->getArgument( 'class' );
 		$class = explode( ':', $class );
 
-		$mine = $class[0];
+		$bundle = $class[0];
 		$name = $class[1];
 
-		
+		$my_file = 'app/Rhodium/Commands/stubs/Model.stub';
 
+		$stub = fopen( $my_file, 'r' );
+		$data = fread( $stub, filesize( $my_file ) );
+
+		$data = str_replace( '{{namespace}}' , $bundle.'\\'.$name, $data);
+		$data = str_replace( '{{class}}' , $name, $data);
+
+		if ( !is_dir( 'src/'.$bundle ) ) {
+			mkdir( 'src/'.$bundle );
+		}
+
+		if (  !is_dir('src/'.$bundle.'/Models' ) ) {
+			mkdir( 'src/'.$bundle.'/Models' );
+		}
+
+		$handle = fopen( 'src/'.$bundle.'/Models/' . $name.'Model.php', 'w' ) or die('Cannot open file: ' . $name.'Model.php' );
+
+		fwrite( $handle, $data );
 	}
 }

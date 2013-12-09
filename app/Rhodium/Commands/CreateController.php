@@ -19,47 +19,35 @@ class CreateController extends Command
 		$this	
 			->setName( 'Rhodium:Create:Controller' )
 			->setDescription( 'Creates a controller.' )
-			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and mine location, Mine:Name' )
-			->addOption( 'base', null, InputOption::VALUE_OPTIONAL, 'Does this extend the BaseController?' );
+			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and mine location, Bundle:Name' );
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output )
 	{
-		$base = $input->getOption( 'base' );
-
 		$class = $input->getArgument( 'class' );
 		$class = explode( ':', $class );
 
-		$mine = $class[0];
+		$bundle = $class[0];
 		$name = $class[1];
 
-		$dir = __DIR__.'/../../src/' . $mine;
+		$my_file = 'app/Rhodium/Commands/stubs/Controller.stub';
 
-		$file =  __DIR__.'/../../src/' . $mine . '/Controllers/' . $name . 'Controller.php';
+		$stub = fopen( $my_file, 'r' );
+		$data = fread( $stub, filesize( $my_file ) );
 
-		$extendsBase  = "<?php\n\n";
-		$extendsBase .= "namespace ".$mine."\Controllers;\n\n";
-		$extendsBase .= "use Rhodium\BaseController;\n\n";
-		$extendsBase .= "class ".$name." extends BaseController\n";
-		$extendsBase .= "{\n";
-		$extendsBase .= "public function __construct()\n";
-		$extendsBase .= "{\n";
-		$extendsBase .= "parent::__construct();\n";
-		$extendsBase .= "}\n";
-		$extendsBase .= "}";
+		$data = str_replace( '{{namespace}}' , $bundle.'\\'.$name, $data);
+		$data = str_replace( '{{class}}' , $name, $data);
 
-		$standard  = "<?php\n\n";
-		$standard .= "namespace ".$mine."\Controllers;\n\n";
-		$standard .= "class ".$name."\n";
-		$standard .= "{\n";
-		$standard .= "}";		
-
-		if ( $base == 'y' || $base == 'yes' ) {
-			$handle = fopen( $file, 'w' ) or die('Cannot open file: ' . $file );
-			fwrite( $handle, $extendsBase );
-		} else {
-			$handle = fopen( $file, 'w' ) or die('Cannot open file: ' . $file );
-			fwrite( $handle, $standard );
+		if ( !is_dir( 'src/'.$bundle ) ) {
+			mkdir( 'src/'.$bundle );
 		}
+
+		if (  !is_dir('src/'.$bundle.'/Controllers' ) ) {
+			mkdir( 'src/'.$bundle.'/Controllers' );
+		}
+		
+		$handle = fopen( 'src/'.$bundle.'/Controllers/' . $name.'Controller.php', 'w' ) or die('Cannot open file: ' . $name.'Controller.php' );
+
+		fwrite( $handle, $data );
 	}
 }

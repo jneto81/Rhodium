@@ -12,3 +12,12 @@ homeHome:
 form_test:
   path: /form/test
   defaults: { _controller: 'Main\Controllers\HomeController::formTest' }
+
+login_view:
+  path: /login
+  defaults: { _controller: 'Users\Controllers\LoginController::login' }
+
+login:
+  path: /login/check
+  defaults: { _controller: 'Users\Controllers\LoginController::loginAction' }
+  methods: [POST]

@@ -11,9 +11,16 @@ class TestModel extends BaseModel
 		parent::__construct();
 	}
 
-	public function test()
+	public function test( $param )
 	{
-		$value = User::find_by_fname('Ewan');
+		$value = User::find_by_fname( $param );
+
+		return $value;
+	}
+
+	public function lastName( $param )
+	{
+		$value = User::find_by_lname( $param );
 
 		return $value;
 	}

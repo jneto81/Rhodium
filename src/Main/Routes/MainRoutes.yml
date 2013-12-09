@@ -1,4 +1,4 @@
 test:
-  path: /test
-  defaults: { _controller: 'Main\Controllers\HomeController::adminHome' }
-
+  path: /test/{param}
+  defaults: { _controller: 'Main\Controllers\HomeController::test' }
+  methods: [GET]
