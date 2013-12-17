@@ -1,5 +1,8 @@
-imports:
-  resource: '../../src/Main/Routes/MainRoutes.yml'
+# imports:
+#   resource: '../../src/Main/Routes/MainRoutes.yml'
+
+pushon_work_routes:
+  resource: "../../src/PushOn/WorkLoad/Routes/PushOnRoutes.yml"
 
 home:
   path: /
@@ -9,15 +12,77 @@ homeHome:
   path: /home 
   defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }
 
-form_test:
-  path: /form/test
-  defaults: { _controller: 'Main\Controllers\HomeController::formTest' }
-
 login_view:
   path: /login
   defaults: { _controller: 'Users\Controllers\LoginController::login' }
 
 login:
-  path: /login/check
+  path: /check/login
   defaults: { _controller: 'Users\Controllers\LoginController::loginAction' }
-  methods: [POST]
+  methods: [GET|POST]
+
+logout:
+  path: /logout
+  defaults: { _controller: 'Users\Controllers\LogoutController::logout' }
+
+request_sign_up:
+  path: /request/sign-up
+  defaults: { _controller: 'Users\Controllers\RegisterController::registerRequest' }
+  methods: [GET|POST]
+
+profile:
+  path: /profile
+  defaults: { _controller: 'Users\Controllers\ProfileController::getProfile' }
+
+
+## Roles ##
+
+#### Roles - Create ####
+admin_create_role:
+  path: /admin/create/role
+  defaults: { _controller: 'Roles\Controllers\CreateRoleController::createRoleView' }
+
+admin_create_role_check:
+  path: /admin/create/role/check 
+  defaults: { _controller: 'Roles\Controllers\CreateRoleController::createRole' }
+  methods: [GET|POST]
+
+#### Roles - Read ####
+admin_read_role_id:
+  path: /admin/read/role/{id}
+  defaults: { _controller: 'Roles\Controllers\ReadRoleController::readRoleById' }
+  methods: [GET]
+
+admin_read_roles:
+  path: /admin/read/roles 
+  defaults: { _controller: 'Roles\Controllers\ReadRoleController::readRoles' }
+
+#### Roles - Update ####
+admin_update_role_id:
+  path: /admin/update/role/{id}
+  defaults: { _controller: 'Roles\Controllers\UpdateRoleController::updateRoleByIdView' }
+
+admin_update_role_check:
+  path: /admin/update/submit/role
+  defaults: {  _controller: 'Roles\Controllers\UpdateRoleController::updateRoleById' }
+  methods: [GET|POST]
+
+#### Roles - Delete ####
+admin_delete_role_id:
+  path: /admin/delete/role/{id}
+  defaults: { _controller: 'Roles\Controllers\DeleteRoleController::deleteRoleByIdView' }
+
+admin_delete_role_check:
+  path: /admin/delete/role/check 
+  defaults: { _controller: 'Roles\Controllers\DeleteRoleController::deleteRoleById' }
+  methods: [GET|POST]
+
+admin_game_value_add:
+  path: /admin/game/value/add 
+  defaults: { _controller: 'Game\Controllers\AddValueController::addValueView' }
+
+admin_game_value_add_submit:
+  path: /admin/game/value/add/submit 
+  defaults: { _controller: 'Game\Controllers\AddValueController::addValue' }
+  methods: [GET|POST]
+

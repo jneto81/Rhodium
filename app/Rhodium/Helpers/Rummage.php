@@ -91,19 +91,39 @@ class Rummage
 
 	public function parseXMLUrl()
 	{
-		$this->data = $this->getFileLocation();
-
-		$this->data = $this->sanitiseXML( $this->data );
-
-		$this->xml = simplexml_load_string( $this->data );
-
-		return $this->xml;
-
+		return simplexml_load_string( file_get_contents( $this->getFileLocation() ) );
 	}
 
 	public function parseXMLFileAsArray()
 	{
 		
+	}
+
+	public function sxe( $url )
+	{   
+	    
+	    foreach ($http_response_header as $header)
+	    {   
+	        if (preg_match('#^Content-Type: text/xml; charset=(.*)#i', $header, $m))
+	        {   
+	            switch (strtolower($m[1]))
+	            {   
+	                case 'utf-8':
+	                    // do nothing
+	                    break;
+
+	                case 'iso-8859-1':
+	                    $xml = utf8_encode($xml);
+	                    break;
+
+	                default:
+	                    $xml = iconv($m[1], 'utf-8', $xml);
+	            }
+	            break;
+	        }
+	    }
+
+	    return simplexml_load_string( $xml );
 	}
 
 	public function sanitiseXML($url)

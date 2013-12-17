@@ -11,15 +11,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Rhodium\Mailer;
 use Rhodium;
 
-class CreateModel extends Command
+class CreateView extends Command
 {
-
 	protected function configure()
 	{
 		$this	
-			->setName( 'r:c:m' )
-			->setDescription( 'Creates a model.' )
-			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and bundle location, Bundle:Name' );
+			->setName( 'r:c:v' )
+			->setDescription( 'Creates a view.' )
+			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a view name and bundle location, Bundle:Name' );
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output )
@@ -30,23 +29,23 @@ class CreateModel extends Command
 		$bundle = $class[0];
 		$name = $class[1];
 
-		$my_file = 'app/Rhodium/Commands/stubs/Model.stub';
+		$my_file = 'app/Rhodium/Commands/stubs/View.stub';
 
 		$stub = fopen( $my_file, 'r' );
 		$data = fread( $stub, filesize( $my_file ) );
 
-		$data = str_replace( '{{namespace}}' , $bundle, $data);
-		$data = str_replace( '{{class}}' , $name, $data);
+		// $data = str_replace( '{{namespace}}' , $bundle, $data);
+		// $data = str_replace( '{{class}}' , $name, $data);
 
 		if ( !is_dir( 'src/'.$bundle ) ) {
 			mkdir( 'src/'.$bundle );
 		}
 
-		if (  !is_dir('src/'.$bundle.'/Models' ) ) {
-			mkdir( 'src/'.$bundle.'/Models' );
+		if (  !is_dir('src/'.$bundle.'/Views' ) ) {
+			mkdir( 'src/'.$bundle.'/Views' );
 		}
 
-		$handle = fopen( 'src/'.$bundle.'/Models/' . $name.'.php', 'w' ) or die('Cannot open file: ' . $name.'.php' );
+		$handle = fopen( 'src/'.$bundle.'/Views/' . $name.'.html.twig', 'w' ) or die('Cannot open file: ' . $name.'.html.twig' );
 
 		fwrite( $handle, $data );
 	}

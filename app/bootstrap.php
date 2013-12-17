@@ -102,7 +102,7 @@ namespace
 
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
-    
+
     $app->register( new ActiveRecordServiceProvider(), array(
         'ar.model_dir' => __DIR__ . '.',
         'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
@@ -124,26 +124,31 @@ namespace
         $loader     = new YamlFileLoader( new FileLocator(__DIR__ . '/config' ) );
         $collection = $loader->load( 'routes.yml' );
         $routes->addCollection( $collection );
-     
         return $routes;
     });
     
     $app->register( new ServiceControllerServiceProvider() ); 
 
-    $app->register( new SecurityServiceProvider() );
+    // $app->register( new SecurityServiceProvider() );
 
-    $app['security.firewalls'] = array (
-        'admin' => array (
-            'pattern' => '^/admin/',
-            'form'    => array (
-                'login_path' => '/login',
-                'check_path' => '/login/check'
-            ),
-            'users' => array (
-                'admin' => 'admin'
-            ),
-        ),
-    );
+    // $app['security.firewalls'] = array (
+    //     'admin' => array (
+    //         'pattern' => '^/admin/',
+    //         'form'    => array (
+    //             'login_path' => '/login',
+    //             'check_path' => '/login/check'
+    //         ),
+    //     ),
+    // );
+
+    // $app['security.providers'] = array (
+    //     'main' => array (
+    //         'entity' => array (
+    //             'class'     => 'Users\UserProvider',
+    //             'property'  => 'email'
+    //         ),
+    //     ),
+    // );
 
     $twigPaths = array (
         __DIR__ . '/../src/',
@@ -171,6 +176,15 @@ namespace
     ));
 
     $app->register( new SwiftmailerServiceProvider() );
+
+    // $app['swiftmailer.options'] = array(
+    //     'host' => 'host',
+    //     'port' => '25',
+    //     'username' => '',
+    //     'password' => '',
+    //     'encryption' => null,
+    //     'auth_mode' => null
+    // );
 
     // Use: 
     //     $message = \Swift_Message::newInstance()

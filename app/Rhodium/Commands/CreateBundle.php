@@ -11,13 +11,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Rhodium\Mailer;
 use Rhodium;
 
-class CreateController extends Command
+class CreateBundle extends Command
 {
 
 	protected function configure()
 	{
 		$this	
-			->setName( 'r:c:c' )
+			->setName( 'r:c:b' )
 			->setDescription( 'Creates a controller.' )
 			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and mine location, Bundle:Name' );
 	}
@@ -35,11 +35,13 @@ class CreateController extends Command
 		$stub = fopen( $my_file, 'r' );
 		$data = fread( $stub, filesize( $my_file ) );
 
-		$data = str_replace( '{{namespace}}' , $bundle, $data);
+		$data = str_replace( '{{namespace}}' , $bundle.'\\'.$name, $data);
 		$data = str_replace( '{{class}}' , $name, $data);
 
 		if ( !is_dir( 'src/'.$bundle ) ) {
 			mkdir( 'src/'.$bundle );
+			mkdir( 'src/'.$bundle.'/Views' );
+			mkdir( 'src/'.$bundle.'/Routes' );
 		}
 
 		if (  !is_dir('src/'.$bundle.'/Controllers' ) ) {
@@ -47,6 +49,46 @@ class CreateController extends Command
 		}
 		
 		$handle = fopen( 'src/'.$bundle.'/Controllers/' . $name.'Controller.php', 'w' ) or die('Cannot open file: ' . $name.'Controller.php' );
+
+		fwrite( $handle, $data );
+
+
+		$my_file = 'app/Rhodium/Commands/stubs/Model.stub';
+
+		$stub = fopen( $my_file, 'r' );
+		$data = fread( $stub, filesize( $my_file ) );
+
+		$data = str_replace( '{{namespace}}' , $bundle.'\\'.$name, $data);
+		$data = str_replace( '{{class}}' , $name, $data);
+
+		if ( !is_dir( 'src/'.$bundle ) ) {
+			mkdir( 'src/'.$bundle );
+		}
+
+		if (  !is_dir('src/'.$bundle.'/Models' ) ) {
+			mkdir( 'src/'.$bundle.'/Models' );
+		}
+
+		$handle = fopen( 'src/'.$bundle.'/Models/' . $name.'Model.php', 'w' ) or die('Cannot open file: ' . $name.'Model.php' );
+
+		fwrite( $handle, $data );
+
+
+
+		$my_file = 'app/Rhodium/Commands/stubs/View.stub';
+
+		$stub = fopen( $my_file, 'r' );
+		$data = fread( $stub, filesize( $my_file ) );
+
+		if ( !is_dir( 'src/'.$bundle ) ) {
+			mkdir( 'src/'.$bundle );
+		}
+
+		if (  !is_dir('src/'.$bundle.'/Views' ) ) {
+			mkdir( 'src/'.$bundle.'/Views' );
+		}
+
+		$handle = fopen( 'src/'.$bundle.'/Views/' . strtolower( $name ).'_view.php', 'w' ) or die('Cannot open file: ' . $name.'_view.php' );
 
 		fwrite( $handle, $data );
 	}

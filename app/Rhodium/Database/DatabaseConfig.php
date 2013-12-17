@@ -26,7 +26,7 @@ class DatabaseConfig
 	{
 		$this->dbaldt = 'pdo_mysql';
 		$this->dbtype = 'mysql';
-		$this->dbname = 'Rhodium';
+		$this->dbname = 'pushon';
 		$this->dbuser = 'root';
 		$this->dbpass = '';
 		$this->dbhost = 'localhost';

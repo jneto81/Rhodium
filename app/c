@@ -3,13 +3,17 @@
 
 set_time_limit(0);
 
-use Rhodium\Commands\FetchBundle;
+use Rhodium\Commands\CreateView;
+use Rhodium\Commands\CreateModel;
+use Rhodium\Commands\CreateBundle;
 use Rhodium\Commands\CreateController;
 
 $app = require_once __DIR__.'/silex.php';
 
 $application = $app['console'];
-$application->add( new FetchBundle() );
+$application->add( new CreateView() );
+$application->add( new CreateModel() );
+$application->add( new CreateBundle() );
 $application->add( new CreateController() );
 
 $application->run();
