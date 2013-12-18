@@ -36,6 +36,8 @@ ini_set('display_errors', 0);
 // Load the libraries
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Ruckuus\Silex\ActiveRecordServiceProvider;
+
 // Create the application
 // $app = require __DIR__.'/../app/bootstrap.php';
 
@@ -48,6 +50,14 @@ $app['config.path'] = '/config';
 
 /** Base path */
 $app['base.path'] = __DIR__;
+
+$dbcfg = new Rhodium\Database\DatabaseConfig();
+
+$app->register( new ActiveRecordServiceProvider(), array(
+    'ar.model_dir' => __DIR__ . '.',
+    'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
+    'ar.default_connection' => 'development',
+));
 
 /** Third party console service provider for Silex */
 use Knp\Provider\ConsoleServiceProvider;

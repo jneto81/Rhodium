@@ -19,7 +19,7 @@ class CreateController extends Command
 		$this	
 			->setName( 'r:c:c' )
 			->setDescription( 'Creates a controller.' )
-			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and mine location, Bundle:Name' );
+			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and bundle location, Bundle:Name' );
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output )
