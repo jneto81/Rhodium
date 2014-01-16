@@ -39,7 +39,7 @@ class CreateRoute extends Command
 
 		if ( isset( $methods ) ) {
 			$newRoute = 
-			"\n\n$routeName:\n  path: /$path\n  defaults: { _controller: '".$bundle."\Controllers\\".$class."::".$function."' }\n  methods:[$methods]";
+			"\n\n$routeName:\n  path: /$path\n  defaults: { _controller: '".$bundle."\Controllers\\".$class."::".$function."' }\n  methods: [$methods]";
 		} else {
 			$newRoute = "\n\n$routeName:\n  path: /$path\n  defaults: { _controller: '".$bundle."\Controllers\\".$class."::".$function."' }";
 		}
