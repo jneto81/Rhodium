@@ -8,8 +8,8 @@
  * app loading and
  * set-up process.
  *
- * @author     Ewan Valentine <ewan@pushon.co.uk>
- * @copyright  PushOn 2013
+ * @author     Ewan Valentine <ewan.valentine@gmail.co.uk>
+ * @copyright  Ewan Valentine 2013
  */
 namespace
 {   
