@@ -11,11 +11,12 @@ namespace Rhodium\Helpers\Security;
  * @copyright  Ewan Valentine July 2013
  */
 class Mcrypt
-{
+{	
+	private $salt;
 
 	public function __construct()
 	{
-
+		$this->salt = 'GritSalt';
 	}
 
 	public function __set( $name, $value )
@@ -51,18 +52,18 @@ class Mcrypt
 		}
 	}
 
-	public function encrypt( $text, $salt )
+	public function encrypt( $string )
 	{
-		$data = mcrypt_encrypt( MCRYPT_RIJNDAEL_128, $salt, $text, MCRYPT_MODE_ECB, $this->iv );
+		$data = mcrypt_encrypt( MCRYPT_RIJNDAEL_128, $this->salt, $string, MCRYPT_MODE_ECB, $this->iv );
 
         return base64_encode( $data );
 	}
 
-	public function decrypt( $text, $salt )
+	public function decrypt( $string )
 	{
-		$text = base64_decode( $text );
+		$string = base64_decode( $string );
 
-        return mcrypt_decrypt( MCRYPT_RIJNDAEL_128, $salt, $text, MCRYPT_MODE_ECB, $this->iv );
+        return mcrypt_decrypt( MCRYPT_RIJNDAEL_128, $this->salt, $string, MCRYPT_MODE_ECB, $this->iv );
 	}
 
 	public function funcCheck()

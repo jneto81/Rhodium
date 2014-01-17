@@ -205,6 +205,9 @@ namespace
     $model = new BaseModel();
     $model->setApp( $app );
 
+    $app['crypto'] = new Rhodium\Helpers\Security\Mcrypt();
+    $app['validate'] = new Rhodium\Helpers\ValidationHelper();
+    
     /** Boots app */
     $app->boot();
 

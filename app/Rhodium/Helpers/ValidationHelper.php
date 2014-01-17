@@ -23,21 +23,6 @@ class ValidationHelper
 		return $value;
 	}
 
-	/**
-	 * stripWhiteSpaces
-	 *
-	 * Basic function to remove whitespaces.
-	 * Kept this in the base controllers
-	 * as it could be commonly used.
-	 * 
-	 * @param  string $value Value to strip.
-	 * @return string        Whitespace free.
-	 */
-	public function trim( $value )
-	{
-		return $trimmed = trim( $value );
-	}
-
 	public function range( $min, $max, $value )
 	{
 		$length = strlen( $value );
@@ -65,10 +50,5 @@ class ValidationHelper
 		}
 
 		return new \Exception( 'Invalid e-mail address.' );
-	}
-
-	public function ukpc( $postCode )
-	{
-
 	}
 }
