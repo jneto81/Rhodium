@@ -36,7 +36,7 @@ namespace
         Rhodium\BaseController,
         Rhodium\BaseModel;
 
-    use Ruckuus\Silex\ActiveRecordServiceProvider;
+    use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 
     /** Global functions */
 
@@ -103,10 +103,27 @@ namespace
     /** Sets Database configuration */
     $dbcfg = new DatabaseConfig();
 
-    $app->register( new ActiveRecordServiceProvider(), array(
-        'ar.model_dir' => __DIR__ . '.',
-        'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
-        'ar.default_connection' => 'development',
+    $app->register( new DoctrineServiceProvider, array (
+        "db.options" => array(
+            'driver'    => 'pdo_mysql',
+            'host'      => $dbcfg->dbhost,
+            'dbname'    => $dbcfg->dbname,
+            'user'      => $dbcfg->dbuser,
+            'password'  => $dbcfg->dbpass,
+            'charset'   => 'utf8',
+        ),
+    ));
+
+    $app->register( new DoctrineOrmServiceProvider, array (
+        "orm.em.options" => array(
+            "mappings" => array(
+                array(
+                    "type" => "annotation",
+                    "path" => __DIR__."src/CommentsBundle/Entities",
+                    "namespace" => "CommentsBundle\Entities",
+                ),
+            ),
+        ),
     ));
 
     /** Register Http Cache service */

@@ -35,8 +35,19 @@ ini_set('display_errors', 0);
 
 // Load the libraries
 require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__.'/bootstrap.php';
 
-use Ruckuus\Silex\ActiveRecordServiceProvider;
+$helpers = array(
+    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper( $app['orm.em']->getConnection() ),
+    'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper( $app['orm.em'] ),
+);
+
+$cli = new \Symfony\Component\Console\Application('Doctrine Command Line Interface', Doctrine\Common\Version::VERSION);
+$cli->setCatchExceptions(true);
+$helperSet = $cli->getHelperSet();
+foreach ($helpers as $name => $helper) {
+    $helperSet->set($helper, $name);
+}
 
 // Create the application
 // $app = require __DIR__.'/../app/bootstrap.php';
@@ -52,12 +63,6 @@ $app['config.path'] = '/config';
 $app['base.path'] = __DIR__;
 
 $dbcfg = new Rhodium\Database\DatabaseConfig();
-
-$app->register( new ActiveRecordServiceProvider(), array(
-    'ar.model_dir' => __DIR__ . '.',
-    'ar.connections' =>  array ( 'development' => 'mysql://'.$dbcfg->dbuser.':'.$dbcfg->dbpass.'@'.$dbcfg->dbhost.'/'.$dbcfg->dbname ),
-    'ar.default_connection' => 'development',
-));
 
 /** Third party console service provider for Silex */
 use Knp\Provider\ConsoleServiceProvider;

@@ -1,8 +1,11 @@
 <?php
 
-namespace {{namespace}}\Models;
+namespace {{namespace}}\Entities;
 
-class {{class}} extends \ActiveRecord\Model
+/**
+ * @Entity @Table(name="{{class}}")
+ **/
+class {{class}}
 {
 	
 }

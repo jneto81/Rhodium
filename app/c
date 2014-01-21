@@ -22,4 +22,23 @@ $application->add( new CreateRoute() );
 $application->add( new CreateBundle() );
 $application->add( new CreateController() );
 
+$application->add( new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand() );
+$application->add( new \Doctrine\DBAL\Tools\Console\Command\ImportCommand() );
+
+// ORM Commands
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ClearCache\QueryCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\CreateCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\EnsureProductionSettingsCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ConvertDoctrine1SchemaCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\GenerateRepositoriesCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\GenerateEntitiesCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\GenerateProxiesCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\RunDqlCommand() );
+$application->add( new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand() );
+
 $application->run();

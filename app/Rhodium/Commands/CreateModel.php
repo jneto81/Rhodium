@@ -19,13 +19,24 @@ class CreateModel extends Command
 		$this	
 			->setName( 'r:c:m' )
 			->setDescription( 'Creates a model.' )
-			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and bundle location, Bundle:Name' );
+			->addArgument( 'class', null, InputOption::VALUE_REQUIRED, 'Enter a class name and bundle location, Bundle:Name' )
+			->addArgument(
+			    'cols',
+			    InputArgument::IS_ARRAY,
+			    'Specify your columns.'
+			);
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output )
 	{
 		$class = $input->getArgument( 'class' );
 		$class = explode( ':', $class );
+
+		$cols = $input->getArgument( 'cols' );
+
+		
+
+
 
 		$bundle = $class[0];
 		$name = $class[1];
@@ -37,6 +48,16 @@ class CreateModel extends Command
 
 		$data = str_replace( '{{namespace}}' , $bundle, $data);
 		$data = str_replace( '{{class}}' , $name, $data);
+
+		foreach ( $cols as $col ) {
+			explode( ':', $col );
+
+			$properties[] = $col[0];
+			$funs[] = $col[1]; 
+		}
+
+		$data = str_replace( '{{properties}}' , $bundle, $data);
+
 
 		if ( !is_dir( 'src/'.$bundle ) ) {
 			mkdir( 'src/'.$bundle );

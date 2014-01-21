@@ -1,9 +1,3 @@
-# imports:
-#   resource: '../../src/Main/Routes/MainRoutes.yml'
-
-pushon_work_routes:
-  resource: "../../src/PushOn/WorkLoad/Routes/PushOnRoutes.yml"
-
 home:
   path: /
   defaults: { _controller: 'Main\Controllers\HomeController::ourPage' }
