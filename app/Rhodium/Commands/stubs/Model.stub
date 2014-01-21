@@ -2,10 +2,13 @@
 
 namespace {{namespace}}\Entities;
 
+use Doctrine\ORM\Mapping AS ORM;
+
 /**
  * @Entity @Table(name="{{class}}")
  **/
 class {{class}}
 {
-	
+	/** @Id @Column(type="integer") @GeneratedValue */
+	private $id;
 }
