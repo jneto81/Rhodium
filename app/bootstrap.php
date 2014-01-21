@@ -15,6 +15,8 @@ namespace
 {   
     DEFINE('DS', DIRECTORY_SEPARATOR);
 
+    require_once __DIR__.'/../vendor/autoload.php';
+
     use Silex\Provider,
         Silex\Provider\TwigServiceProvider,
         Silex\Provider\FormServiceProvider,
@@ -119,8 +121,8 @@ namespace
             "mappings" => array(
                 array(
                     "type" => "annotation",
-                    "path" => __DIR__."src/CommentsBundle/Entities",
-                    "namespace" => "CommentsBundle\Entities",
+                    "path" => "/../src/Main/Entities",
+                    "namespace" => "Main\Entities",
                 ),
             ),
         ),
@@ -145,27 +147,6 @@ namespace
     });
     
     $app->register( new ServiceControllerServiceProvider() ); 
-
-    // $app->register( new SecurityServiceProvider() );
-
-    // $app['security.firewalls'] = array (
-    //     'admin' => array (
-    //         'pattern' => '^/admin/',
-    //         'form'    => array (
-    //             'login_path' => '/login',
-    //             'check_path' => '/login/check'
-    //         ),
-    //     ),
-    // );
-
-    // $app['security.providers'] = array (
-    //     'main' => array (
-    //         'entity' => array (
-    //             'class'     => 'Users\UserProvider',
-    //             'property'  => 'email'
-    //         ),
-    //     ),
-    // );
 
     $twigPaths = array (
         __DIR__ . '/../src/',
@@ -194,25 +175,19 @@ namespace
 
     $app->register( new SwiftmailerServiceProvider() );
 
-    // $app['swiftmailer.options'] = array(
-    //     'host' => 'host',
-    //     'port' => '25',
-    //     'username' => '',
-    //     'password' => '',
-    //     'encryption' => null,
-    //     'auth_mode' => null
-    // );
-
-    // Use: 
-    //     $message = \Swift_Message::newInstance()
-    //         ->setSubject( 'Feedback' )
-    //         ->setFrom( 'Nob \'ead' )
-    //         ->setTo( 'person@gmail.com' )
-    //         ->setBody( $app['request']->get('message') );
-    //     $app['mailer']->send( $message );
-
     /** Register form service provider */
     $app->register( new FormServiceProvider() );
+
+    /** Third party console service provider for Silex */
+    use Knp\Provider\ConsoleServiceProvider;
+    use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+    use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+    use Symfony\Component\Console\Helper\HelperSet;
+     
+    $app['helperSet'] = new HelperSet(array(
+        'db' => new ConnectionHelper( $app['orm.em']->getConnection() ),
+        'em' => new EntityManagerHelper( $app['orm.em'] )
+    ));
 
     $app['app.name'] = 'Main';
 
@@ -224,7 +199,13 @@ namespace
 
     $app['crypto'] = new Rhodium\Helpers\Security\Mcrypt();
     $app['validate'] = new Rhodium\Helpers\ValidationHelper();
-    
+
+    $app->register( new ConsoleServiceProvider(), array(
+        'console.name'              => 'Rhodium Console',
+        'console.version'           => '1.0.0',
+        'console.project_directory' => __DIR__.'/',
+    ));
+
     /** Boots app */
     $app->boot();
 

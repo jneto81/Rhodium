@@ -34,10 +34,6 @@ class CreateModel extends Command
 
 		$cols = $input->getArgument( 'cols' );
 
-		
-
-
-
 		$bundle = $class[0];
 		$name = $class[1];
 
@@ -49,25 +45,15 @@ class CreateModel extends Command
 		$data = str_replace( '{{namespace}}' , $bundle, $data);
 		$data = str_replace( '{{class}}' , $name, $data);
 
-		foreach ( $cols as $col ) {
-			explode( ':', $col );
-
-			$properties[] = $col[0];
-			$funs[] = $col[1]; 
-		}
-
-		$data = str_replace( '{{properties}}' , $bundle, $data);
-
-
 		if ( !is_dir( 'src/'.$bundle ) ) {
 			mkdir( 'src/'.$bundle );
 		}
 
-		if (  !is_dir('src/'.$bundle.'/Models' ) ) {
-			mkdir( 'src/'.$bundle.'/Models' );
+		if (  !is_dir('src/'.$bundle.'/Entities' ) ) {
+			mkdir( 'src/'.$bundle.'/Entities' );
 		}
 
-		$handle = fopen( 'src/'.$bundle.'/Models/' . $name.'.php', 'w' ) or die('Cannot open file: ' . $name.'.php' );
+		$handle = fopen( 'src/'.$bundle.'/Entities/' . $name.'.php', 'w' ) or die('Cannot open file: ' . $name.'.php' );
 
 		fwrite( $handle, $data );
 	}

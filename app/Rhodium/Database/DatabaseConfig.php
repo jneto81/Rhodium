@@ -26,9 +26,9 @@ class DatabaseConfig
 	{
 		$this->dbaldt = 'pdo_mysql';
 		$this->dbtype = 'mysql';
-		$this->dbname = 'pushon';
+		$this->dbname = 'boutique';
 		$this->dbuser = 'root';
-		$this->dbpass = '';
+		$this->dbpass = 'drudkh';
 		$this->dbhost = 'localhost';
 	}
 
