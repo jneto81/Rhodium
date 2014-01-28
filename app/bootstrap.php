@@ -23,16 +23,16 @@ namespace
         Silex\Provider\MonologServiceProvider, 
         Silex\Provider\SessionServiceProvider,
         Silex\Provider\DoctrineServiceProvider,
-        Silex\Provider\SecurityServiceProvider,
         Silex\Provider\HttpCacheServiceProvider,
-        Silex\Provider\TranslationServiceProvider,
         Silex\Provider\UrlGeneratorServiceProvider,
-        Silex\Provider\ServiceControllerServiceProvider,
-        Silex\Provider\SwiftmailerServiceProvider;
+        Silex\Provider\ServiceControllerServiceProvider;
 
     use Symfony\Component\Config\FileLocator,
         Symfony\Component\Routing\RouteCollection,
-        Symfony\Component\Routing\Loader\YamlFileLoader;
+        Symfony\Component\Routing\Loader\YamlFileLoader,
+        Symfony\Component\ExpressionLanguage\Expression,
+        Symfony\Component\DependencyInjection\ContainerBuilder,
+        Symfony\Component\DependencyInjection\Loader\YamlFileLoader as ContainerYamlLoader;
 
     use Rhodium\Database\DatabaseConfig,
         Rhodium\BaseController,
@@ -71,9 +71,13 @@ namespace
     }
 
     /** Bootstrap */
+    $container = new ContainerBuilder();
+    $loader = new ContainerYamlLoader( $container, new FileLocator( __DIR__ . '/config/' ) );
+    $loader->load('services.yml');
 
-    /** Loads base level Silex components */
-    $app = new Silex\Application();
+    $app = $container->get('silex.app');
+    $app['container'] = $container;
+    $app['env'] = 'dev';
 
     /** Base path */
     $app['base.path'] = __DIR__;
@@ -90,30 +94,10 @@ namespace
     /** Register Url generator service provider */
     $app->register( new UrlGeneratorServiceProvider() );
 
-    $app->register( new TranslationServiceProvider(), array(
-        'translator.messages' => array(),
-    ));
-
-
-    $twitter = array (
-        'consumer_key'        => '',
-        'consumer_secret'     => '',
-        'access_token'        => '',
-        'access_token_secret' => '',
-    );
-
-    /** Sets Database configuration */
-    $dbcfg = new DatabaseConfig();
+    $app->register( new DerAlex\Silex\YamlConfigServiceProvider( __DIR__ . "/config/database_{$app['env']}.yml" ) );
 
     $app->register( new DoctrineServiceProvider, array (
-        "db.options" => array(
-            'driver'    => 'pdo_mysql',
-            'host'      => $dbcfg->dbhost,
-            'dbname'    => $dbcfg->dbname,
-            'user'      => $dbcfg->dbuser,
-            'password'  => $dbcfg->dbpass,
-            'charset'   => 'utf8',
-        ),
+        "db.options" => array( $app['env'] => $app['config']['database'] )
     ));
 
     $app->register( new DoctrineOrmServiceProvider, array (
@@ -148,35 +132,15 @@ namespace
     
     $app->register( new ServiceControllerServiceProvider() ); 
 
-    $twigPaths = array (
-        __DIR__ . '/../src/',
-        __DIR__ . '/../vendor/rhodium/rhodium-cms/src/Rhodium/CMS/',
-        __DIR__ . '/../vendor/rhodium/rhodium-bullion/src/Rhodium/Bullion/',
-        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM/',
-        __DIR__ . '/../vendor/rhodium/rhodium-crm/src/Rhodium/CRM/',
-    );
-
-    foreach ( $twigPaths as $path ) {
-        if ( is_dir( $path ) ) {
-            $paths[] = $path;
-        }
-    }
-
-
     /** Register twig service provider */
     $app->register( new TwigServiceProvider(), array(
-        'twig.path'             => $paths,
+        'twig.path'             => __DIR__ . '/../src/',
         'twig.options'          => array(
             'debug' => true,
             'cache' => false, // __DIR__ . '/cache', 
             'strict_variables' => false
         )
     ));
-
-    $app->register( new SwiftmailerServiceProvider() );
-
-    /** Register form service provider */
-    $app->register( new FormServiceProvider() );
 
     /** Third party console service provider for Silex */
     use Knp\Provider\ConsoleServiceProvider;
@@ -189,13 +153,11 @@ namespace
         'em' => new EntityManagerHelper( $app['orm.em'] )
     ));
 
-    $app['app.name'] = 'Main';
+    // $controller = new BaseController();
+    // $controller->setApp( $app );
 
-    $controller = new BaseController();
-    $controller->setApp( $app );
-
-    $model = new BaseModel();
-    $model->setApp( $app );
+    // $model = new BaseModel();
+    // $model->setApp( $app );
 
     $app['crypto'] = new Rhodium\Helpers\Security\Mcrypt();
     $app['validate'] = new Rhodium\Helpers\ValidationHelper();

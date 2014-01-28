@@ -28,7 +28,7 @@ class DatabaseConfig
 		$this->dbtype = 'mysql';
 		$this->dbname = 'boutique';
 		$this->dbuser = 'root';
-		$this->dbpass = 'drudkh';
+		$this->dbpass = '';
 		$this->dbhost = 'localhost';
 	}
 

@@ -24,60 +24,19 @@ Request::enableHttpMethodParameterOverride();
 class BaseController
 {
 
-	public $model;
-	public $view;
-	public $helper;
-	public $thirdParty;
-
-	protected static $app;
+	protected $app;
 
 	/**
 	 * __construct()
-	 *
-	 * Sets Application and Loader
 	 */
 	public function __construct()
 	{
-		
+
 	}
 
-	public static function setApp( $app )
+	public function setApp( Application $app )
 	{
-		self::$app = $app;
-	}
-
-	public function isLoggedIn()
-	{
-		$user = self::$app['session']->get( 'user' );
-
-		if ( null === $user ) {
-        	return self::$app->redirect('/home');
-    	}
-	}
-
-	public function isAdmin()
-	{
-		$user = self::$app['session']->get( 'user' );
-
-		if ( null === $user ) {
-        	return self::$app->redirect('/home');
-    	}
-
-    	if ( $user['role'] == 1 ) {
-    		return true;
-    	} else {
-    		return false;
-    	}
-	}
-
-	public function make( $content, $code = null )
-	{
-		if ( isset( $code ) ) {
-			return new Response( $content, $code );
-		} else {
-			return new Response( $content );
-		}
-		
+		$this->app = $app;
 	}
 
 	/**
@@ -94,7 +53,7 @@ class BaseController
 
 		$model = explode( ':', $model );
 
-		$modelString = "" . $model[0] . "\Models\\" . $model[1] . "Model";
+		$modelString = "" . $model[0] . "\Entities\\" . $model[1];
 
 		$model = new $modelString( $params );
 
@@ -103,7 +62,6 @@ class BaseController
 
 	public function view( $view, $params = null )
 	{
-
 		$view = explode( ':', $view );
 
 		$bundle = $view[0];
@@ -112,66 +70,11 @@ class BaseController
 		$path = $bundle . '/Views/' . $view . '.html.twig';
 
 		if ( isset( $params ) ) {
-			$view = self::$app['twig']->render( $path , $params );
+			$view = $this->app['twig']->render( $path , $params );
 		} else {
-			$view = self::$app['twig']->render( $path );
+			$view = $this->app['twig']->render( $path );
 		}
 
 		return $view;
-	}
-
-	/**
-	 * helper
-	 *
-	 * @todo  Will be used to load libraries
-	 * 
-	 * @param  string $helper helper name
-	 * @return object         helper object
-	 */
-	public function helper( $helper )
-	{
-
-	}
-
-	/**
-	 * load
-	 *
-	 * Loader class for loading files,
-	 * media files, config files etc.
-	 * 
-	 * @param  string $type file sort
-	 * @param  string $name file name
-	 * @param  string $ext  mime type
-	 * @return string       filepath
-	 */
-	public function load($type, $name, $ext)
-	{
-		switch ( $type ) {
-			case $type == 'image':
-				$result = $this->loader->loadImage( $name, $ext );
-				break;
-
-			case $type == 'audio':
-				$result = $this->loader->loadAudio( $name, $ext );
-				break;
-
-			case $type == 'video':
-				$result = $this->loader->loadVideo( $name, $ext );
-				break;
-
-			case $type == 'xml':
-				$result = $this->loader->loadXML( $name );
-				break;
-
-			case $type == 'json':
-				$result = $this->loader->loadJSON( $name );
-				break;
-
-			default:
-				$result = 'Incorrect params given';
-				break;
-		}
-
-		return $result;
 	}
 }

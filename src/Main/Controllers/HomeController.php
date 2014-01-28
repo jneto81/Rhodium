@@ -31,7 +31,7 @@ class HomeController extends BaseController
 
 	public function ourPage()
 	{
-		$test = $this->model->test();
+		//$test = $this->model->test();
 
 		return $this->view( 'Main:index' );
 	}
