@@ -4,7 +4,7 @@ Rhodium MVC
 Installation
 -------------
 
-1. git clone https://github.com/Rhodium-Digital/Rhodium.git
+1. git clone https://github.com/EwanValentine/Rhodium.git
 2. cd Rhodium
 3. composer install
 4. sudo chmod -R 777 app/cache
