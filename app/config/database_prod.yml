@@ -3,4 +3,4 @@ database:
   host: localhost
   dbname: boutique
   user: root
-  password: drudkh
+  password: 
