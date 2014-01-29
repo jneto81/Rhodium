@@ -3,7 +3,7 @@
 namespace Rhodium;
 
 use Silex\Application;
-use Rhodium\Helpers\Loader;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,19 +24,24 @@ Request::enableHttpMethodParameterOverride();
 class BaseController
 {
 
-	protected $app;
+	protected static $app;
 
 	/**
 	 * __construct()
 	 */
 	public function __construct()
 	{
-
+		
 	}
 
-	public function setApp( Application $app )
+	public static function setApp( Application $app )
 	{
-		$this->app = $app;
+		self::$app = $app;
+	}
+
+	public function getApp()
+	{
+		return self::$app;
 	}
 
 	/**
@@ -48,9 +53,8 @@ class BaseController
 	 * @param  string $model accepts model name
 	 * @return object        returns instance of a model
 	 */
-	public function model( $model, array $params = null )
+	public function entity( $model, array $params = null )
 	{
-
 		$model = explode( ':', $model );
 
 		$modelString = "" . $model[0] . "\Entities\\" . $model[1];
@@ -70,9 +74,9 @@ class BaseController
 		$path = $bundle . '/Views/' . $view . '.html.twig';
 
 		if ( isset( $params ) ) {
-			$view = $this->app['twig']->render( $path , $params );
+			$view = self::$app['twig']->render( $path , $params );
 		} else {
-			$view = $this->app['twig']->render( $path );
+			$view = self::$app['twig']->render( $path );
 		}
 
 		return $view;

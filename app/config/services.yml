@@ -4,6 +4,5 @@ services:
 
   base.controller:
     class: Rhodium\BaseController
-    arguments: ["@silex.app"]
     calls:
       - [setApp, ["@silex.app"]]

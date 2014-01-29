@@ -1,0 +1,8 @@
+entities:
+  mappings:
+    - namespace: Main\Entities
+      type: annotation
+      path: /../src/Main/Entities
+    - namespace: UserBundle\Entities
+      type: annotation
+      path: /../UserBundle/Entites

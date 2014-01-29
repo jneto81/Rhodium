@@ -13,10 +13,9 @@
  */
 namespace
 {   
-    DEFINE('DS', DIRECTORY_SEPARATOR);
-
     require_once __DIR__.'/../vendor/autoload.php';
 
+    /** Silex Core */
     use Silex\Provider,
         Silex\Provider\TwigServiceProvider,
         Silex\Provider\FormServiceProvider,
@@ -27,27 +26,22 @@ namespace
         Silex\Provider\UrlGeneratorServiceProvider,
         Silex\Provider\ServiceControllerServiceProvider;
 
+    /** Symfony Components */
     use Symfony\Component\Config\FileLocator,
         Symfony\Component\Routing\RouteCollection,
+        Symfony\Component\Console\Helper\HelperSet,
         Symfony\Component\Routing\Loader\YamlFileLoader,
         Symfony\Component\ExpressionLanguage\Expression,
         Symfony\Component\DependencyInjection\ContainerBuilder,
         Symfony\Component\DependencyInjection\Loader\YamlFileLoader as ContainerYamlLoader;
 
-    use Rhodium\Database\DatabaseConfig,
-        Rhodium\BaseController,
-        Rhodium\BaseModel;
+    /** Doctrine */
+    use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper,
+        Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 
-    use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
-
-    /** Global functions */
-
-    /** 
-    * Cheers to the guys at Message, Brighton 
-    * for showing me this cheeky little number. 
-    * 'd' and 'de' is nicer to shout out 
-    * loud than 'take a dump'.
-    */
+    /** Misc Third party */
+    use Knp\Provider\ConsoleServiceProvider,
+        Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 
     /**
      * Debuger no exit
@@ -74,10 +68,11 @@ namespace
     $container = new ContainerBuilder();
     $loader = new ContainerYamlLoader( $container, new FileLocator( __DIR__ . '/config/' ) );
     $loader->load('services.yml');
-
-    $app = $container->get('silex.app');
-    $app['container'] = $container;
+    $app = $container->get( 'silex.app' );
     $app['env'] = 'dev';
+
+    $app['base.controller'] = $container->get( 'base.controller' );
+    $app['container'] = $container;
 
     /** Base path */
     $app['base.path'] = __DIR__;
@@ -95,20 +90,17 @@ namespace
     $app->register( new UrlGeneratorServiceProvider() );
 
     $app->register( new DerAlex\Silex\YamlConfigServiceProvider( __DIR__ . "/config/database_{$app['env']}.yml" ) );
+    $app->register( new DerAlex\Silex\YamlConfigServiceProvider( __DIR__ . "/config/doctrine.yml" ) );
 
     $app->register( new DoctrineServiceProvider, array (
         "db.options" => array( $app['env'] => $app['config']['database'] )
     ));
 
+    d( $app['config']['entities'] );
+
     $app->register( new DoctrineOrmServiceProvider, array (
         "orm.em.options" => array(
-            "mappings" => array(
-                array(
-                    "type" => "annotation",
-                    "path" => "/../src/Main/Entities",
-                    "namespace" => "Main\Entities",
-                ),
-            ),
+           $app['config']['entities']
         ),
     ));
 
@@ -142,25 +134,10 @@ namespace
         )
     ));
 
-    /** Third party console service provider for Silex */
-    use Knp\Provider\ConsoleServiceProvider;
-    use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-    use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
-    use Symfony\Component\Console\Helper\HelperSet;
-     
     $app['helperSet'] = new HelperSet(array(
         'db' => new ConnectionHelper( $app['orm.em']->getConnection() ),
         'em' => new EntityManagerHelper( $app['orm.em'] )
     ));
-
-    // $controller = new BaseController();
-    // $controller->setApp( $app );
-
-    // $model = new BaseModel();
-    // $model->setApp( $app );
-
-    $app['crypto'] = new Rhodium\Helpers\Security\Mcrypt();
-    $app['validate'] = new Rhodium\Helpers\ValidationHelper();
 
     $app->register( new ConsoleServiceProvider(), array(
         'console.name'              => 'Rhodium Console',
