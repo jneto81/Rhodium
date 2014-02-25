@@ -28,3 +28,5 @@ Followed by a command:
 +   r:a:r route_name path/name BundleName ClassName functionName "GET|POST" (Create a route)
 +	r:c:v BundleName:view_name		(Create a view)
 +	r:c:t TableName title:varchar:225 (Create a database table)
+
+ 
